@@ -1,1 +1,222 @@
-//
+html, body
+  height: 100%
+
+.header:after
+  content: ''
+  position: fixed
+  background: #996439
+  z-index: -1
+  height: 100%
+  right: 0
+  left: 0
+  top: 0
+  border: 50px solid #fff
+.header
+  position: relative
+  height: 200px
+  margin: 50px
+  margin-bottom: 200px
+  display: flex
+  justify-content: center
+  align-items: center
+.header_title
+  padding: 0 10px
+.header_links
+  position: absolute
+  top: 20px
+  right: 20px
+
+.header-example
+  position: relative
+  z-index: 1
+  max-width: 1000px
+  margin: 0 auto
+  margin-top: -200px
+  display: flex
+  align-items: center
+.header-example_image
+  width: 40%
+  margin-left: 40px
+.header-example_text
+  width: 60%
+  margin-left: -60px
+  padding-top: 20px
+.header-code
+  display: inline
+  background: #C0783D
+  color: #fff
+  font-size: 1.1em
+  box-decoration-break: clone
+  padding: 4px 6px
+  line-height: 33px
+
+.bg-mask
+  background: #fff
+  margin-top: -150px
+  padding-top: 250px
+  padding-bottom: 80px
+
+.logo-type
+  color: #fff
+  text-align: center
+  font-weight: 700
+.logo-type--header
+  font-size: 4em
+.logo-type--footer
+  font-size: 30px
+.tagline
+  font-size: 1.1em
+  text-align: center
+  color: #fff
+  text-transform: uppercase
+  font-weight: 700
+  letter-spacing: 0.1em
+
+.mast-link
+  color: #fff
+.mast-link--header
+.mast-link--footer
+
+.contain
+  margin: 0 auto
+  max-width: 800px
+.contain--full
+  max-width: 100%
+  margin: 0 50px
+
+.doc-heading
+  color: #C0783D
+  font-weight: 700
+  text-align: center
+.doc-heading--github
+  color: #000
+
+.doc-grid
+  display: flex
+  margin-left: -40px
+.doc-grid_item
+  flex: 1
+  border-left: 40px solid transparent
+
+.code-label
+  font-weight: 700
+
+.code-block
+  background: #eee
+  border: 1px solid #ddd
+  padding: 10px
+  font-family: $monospace
+.code-block--hero
+  text-align: center
+  padding: 20px 10px
+
+.rendered-block
+  background: #ddd
+  border: 1px solid #ccc
+  padding: 10px
+
+.parent-element
+  border: 1px solid purple
+  max-width: 250px
+  margin: 0 auto
+  font-size: 0.8em
+  &:before, &:after
+    content: 'parent'
+    color: purple
+    display: block
+  &:before
+    margin: 0 0 5px 5px
+  &:after
+    margin: 5px 5px 0 0
+    text-align: right
+
+.example-section
+  background: #eee
+  padding: 50px
+.example-section_contain
+  max-width: 1000px
+  margin: 0 auto
+
+.example-layout
+  display: flex
+.example-layout_sidebar
+  width: 20%
+.example-layout_column
+  width: 80%
+  border-left: 40px solid transparent
+
+.example-grid
+  display: flex
+  flex-wrap: wrap
+  margin-left: -20px
+  margin-bottom: -20px
+.example-grid_item
+  width: 33.33%
+  margin-bottom: 20px
+  border-left: 20px solid transparent
+
+.example-arrow
+  margin: -20px auto
+  position: relative
+  z-index: 1
+  width: 50px
+
+.example-sink // dynamic generated content
+  background: #ddd
+  max-width: 500px
+  margin: 0 auto
+  border: 1px solid #ccc
+  padding: 30px
+  font-size: 0.7em
+  h1, h2, h3, h4
+    margin-bottom: 1em
+    font-weight: 700
+  h1
+    font-size: 3em
+    margin-bottom: 0.8em
+  h2
+    font-size: 2em
+    margin-bottom: 0.8em
+  h3
+    font-size: 1.1em
+  h4
+    font-size: 0.9em
+    text-transform: uppercase
+  p, ul, ol, table
+    margin-bottom: 1em
+
+.backstory-contain
+  max-width: 700px
+  margin: 0 auto
+.backstory-para
+  text-align: center
+  font-size: 20px
+  font-weight: 300
+
+
+.backstory-cite
+  display: flex
+  justify-content: center
+  align-items: center
+.backstory-cite_img
+  width: 50px
+  border-radius: 50%
+  overflow: hidden
+.backstory-cite_text
+  margin-left: 20px
+
+.github-btn-positioning
+  display: flex
+  justify-content: center
+
+.footer
+  margin-top: 0
+  margin: 50px
+  margin-bottom: 50px + 40px
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 0 10px
+.footer_logo
+.footer_link
+  margin-left: 40px

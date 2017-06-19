@@ -5,7 +5,225 @@
   <link href="website-assets/dist/css/main.css" rel="stylesheet" />
 </head>
 <body>
-  <div data-dummy="sink"></div>
-  <script src="dummy.js"></script>
+
+<div class="header">
+  <div class="header_title">
+    <div class="logo-type logo-type--header">Dummy.js</div>
+    <div class="tagline">The Aid for quicker front-end builds</div>
+  </div>
+  <div class="header_links">
+    <div class="mast-link">Github</div>
+    <div class="mast-link">Backstory</div>
+  </div>
+</div>
+
+<div class="header-example">
+  <div class="header-example_image">
+    <img data-dummy="500x400" />
+  </div>
+  <div class="header-example_text">
+    <div class="header-code">Speed up and crash test your front end builds by usitilising repeatable elements, dummy text &amp; placeholder images</div>
+    <div class="header-code">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</div>
+  </div>
+</div>
+
+<div class="bg-mask">
+
+  <div class="contain">
+    <div class="doc-heading">Start using this right now</div>
+    <div class="code-label">Place before the &lt;/body> tag (at least after all your markup)</div>
+    <div class="code-block code-block--hero">
+      &lt;script src="https://dummyjs.github.io/dummy.js”&gt;&lt;/script&gt;
+    </div>
+  </div>
+
+  <div class="contain">
+    <div class="doc-heading">Dummy Text</div>
+    
+    <div class="doc-grid" data-repeat="3">
+      <div class="doc-grid_item">
+        <div class="code-label" data-dummy></div>
+        <div class="code-block" data-dummy></div>
+      </div>
+      <div class="doc-grid_item">
+        <div class="rendered-block" data-dummy></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="contain">
+    <div class="doc-heading">Dummy Images</div>
+    
+    <div class="doc-grid">
+      <div class="doc-grid_item">
+        <div class="code-label" data-dummy></div>
+        <div class="code-block" data-dummy></div>
+        <div class="code-label" data-dummy></div>
+        <div class="code-block" data-dummy></div>
+        <img data-dummy="text=Custom+Text" />
+      </div>
+      <div class="doc-grid_item">
+        <div class="parent-element">
+          <img data-dummy />
+        </div>
+        <div class="code-label" data-dummy></div>
+        <div class="code-block" data-dummy></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contain">
+    <div class="doc-heading">Repeatable Elements</div>
+    
+    <div class="doc-grid">
+      <div class="doc-grid_item">
+        <div class="code-label" data-dummy></div>
+        <div class="code-block" data-dummy></div>
+      </div>
+      <div class="doc-grid_item">
+        <div class="code-block" data-dummy>
+          <ul>
+            <li data-repeat="3">List Item</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-grid">
+      <div class="doc-grid_item">
+        <div class="code-label" data-dummy></div>
+        <div class="code-block" data-dummy></div>
+      </div>
+      <div class="doc-grid_item">
+        <div class="code-block" data-dummy>
+          <ul>
+            <li data-dummy data-repeat="3"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-grid">
+      <div class="doc-grid_item">
+        <div class="code-label" data-dummy></div>
+        <div class="code-block" data-dummy></div>
+      </div>
+      <div class="doc-grid_item">
+        <div class="code-block" data-dummy>
+          <ul data-dummy></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contain contain--full">
+    <div class="doc-heading">Combining the above for a real use case</div>
+
+    <div class="example-section">
+      <div class="example-section_contain">
+        <div class="example-layout">
+          <div class="example-layout_sidebar">
+            <div class="">
+              <div class="">Dynamic Filter Label</div>
+              <div class="">Dynamic Category</div>
+            </div>
+          </div>
+          <div class="example-layout_column">
+            <div class="example-grid">
+              <div class="example-grid_item">
+                <img data-dummy />
+                <div class="">Dynamic Title</div>
+                <div class="">Dynamic Description</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-arrow">
+      <svg viewbox="0 0 50 100" width="50px" height="100px">
+        <polyline points="25 0, 25 100" stroke="#333" />
+        <polyline points="5 75, 25 100, 45 75" stroke="#333" fill="transparent" />
+      </svg>
+    </div>
+
+    <div class="example-section">
+      <div class="example-section_contain">
+        <div class="example-layout">
+          <div class="example-layout_sidebar">
+            <div class="" data-repeat="2">
+              <div class="" data-dummy>Dynamic Filter Label</div>
+              <div class="" data-dummy data-repeat="3"></div>
+            </div>
+          </div>
+          <div class="example-layout_column">
+            <div class="example-grid">
+              <div class="example-grid_item" data-repeat="6">
+                <img data-dummy />
+                <div data-dummy class=""></div>
+                <div data-dummy class=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="contain">
+    <div class="doc-heading">Kitchen Sink</div>
+    <div class="example-sink" data-dummy="sink"></div>
+  </div>
+
+  <div class="contain">
+    <div class="doc-heading">Backstory</div>
+
+    <div class="backstory-contain">
+      <p class="backstory-para">In a continuous effort to streamline front end builds
+      I found myelf creating the front end through different phases. 
+      First layout, complex elements, then finaly integration of assets and real content before CMS/framework integration.</p>
+      <p class="backstory-para">It was these early stages I was continously copy pasting elements to form, then repeating
+      that process everytime a change was made. Testing dynamic content &amp; word wrapping
+      I was entering fake text data of differnet lenths over and over to test. 
+      As all developers do, this was finally automated into this small framework with an 
+      interface that aids the build process.</p>
+    </div>
+
+    <div class="backstory-cite">
+      <div class="backstory-cite_img">
+        <img data-dummy />
+      </div>
+      <div class="backstory-cite_text">
+        <div class="">Paul Collett</div>
+        <div class="">paulcollett.com</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contain">
+    <div class="doc-heading doc-heading--github">Use Github? &ndash; Add dummyjs to your starred list to find easily</div>
+    <div class="github-btn-positioning">
+      <button>Star Project</button>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  <div class="footer_logo">
+    <div class="logo-type logo-type--footer">dummy.js</div>
+  </div>
+  <div class="footer_link">
+    <a class="mast-link" href="#">GitHub</a>
+  </div>
+  <div class="footer_link">
+    <a class="mast-link" href="#">Report Suggestions / Issues</a>
+  </div>
+</div>
+
+<script src="dummy.js"></script>
+
 </body>
 </html>
