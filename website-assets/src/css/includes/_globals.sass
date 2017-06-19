@@ -1,0 +1,49 @@
+$sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default
+$monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default
+
+//
+  @font-face
+    font-family: "custom-font"
+    src: url("../fonts/font-bold.eot?#iefix")
+    src: url("../fonts/font-bold.eot?#iefix") format("eot"), url("../fonts/font-bold.woff") format("woff"),url("../fonts/font-bold.ttf") format("truetype"),url("../fonts/font-bold.svg#font-bold") format("svg")
+
+html
+  //
+
+body
+  font-family: $sans-serif
+  font-size: 1rem // 16px
+  font-weight: normal
+  line-height: 1.25 // 20px
+  color: #333
+  word-wrap: break-word
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  background: #fff
+
+*, *:before, *:after
+  -moz-osx-font-smoothing: grayscale
+
+img
+  display: inline-block
+  max-width: 100%
+  height: auto
+  user-select: none
+
+a
+  color: currentcolor
+  text-decoration: none
+  outline: none
+
+h1, h2, h3, h4, h5, h6
+  font-size: 1rem
+  font-weight: normal
+  line-height: 1.25
+
+ul, ol, li, p
+  margin: 0
+  padding: 0
+  list-style: none
+
+::selection
+  text-shadow: none

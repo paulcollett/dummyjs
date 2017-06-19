@@ -4,7 +4,7 @@ One dummy that shouldnt suck
 
 Add to your page
 
-`<script src="https://paulcollett.github.io/dummyjs/index.js"></script>`
+`<script src="https://paulcollett.github.io/dummyjs/dummy.js"></script>`
 
 ## Dummy Text
 
