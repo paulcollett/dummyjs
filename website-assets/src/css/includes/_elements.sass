@@ -170,7 +170,7 @@ html, body
   border: 1px solid #ccc
   padding: 30px
   font-size: 0.7em
-  h1, h2, h3, h4
+  h1, h2, h3, h4, h5
     margin-bottom: 1em
     font-weight: 700
   h1
@@ -184,8 +184,35 @@ html, body
   h4
     font-size: 0.9em
     text-transform: uppercase
-  p, ul, ol, table
+  h5
+    font-weight: 700
+    font-size: 0.9em
+  p, table, img
     margin-bottom: 1em
+  hr
+    height: 0
+    background: none
+    border: none
+    border-top: 2px solid #555
+    margin: 2em 0
+  table
+    background: rgba(255, 255, 255, 0.3)
+    td, th
+      padding: 5px
+      border-bottom: 1px solid #ddd
+  ul, ol
+    padding-left: 1.5em
+    margin-bottom: 1em - 0.1em
+  ul li, ol li
+    list-style: square outside
+    margin-bottom: 0.1em 
+  ol li
+    list-style-type: lower-roman
+  blockquote
+    font-style: italic
+    font-size: 1.3em
+    border-left: 5px solid #aaa
+    padding-left: 1em
 
 .backstory-contain
   max-width: 700px
@@ -223,6 +250,34 @@ html, body
 .footer_link
   margin-left: 40px
 
+
+.description-list
+  display: inline-block
+  font-weight: 500
+.description-list, .description-list li
+  list-style: square outside
+.description-list, .description-list ul
+  padding-left: 1.5em
+
+
+.example-social-links, .example-sink .example-social-links
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 0
+  list-style: none
+  li
+    list-style: none
+    padding-right: 10px
+  a
+    display: block
+    background: #fff
+    padding: 2px 7px
+    text-align: center
+    border-radius: 20px
+
+
+
 .u-mb-10
   margin-bottom: 10px
 .u-mb-20
@@ -245,3 +300,5 @@ html, body
   padding-top: 60px
 .u-text-c
   text-align: center
+.u-text-l
+  text-align: left
