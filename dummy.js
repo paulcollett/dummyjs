@@ -51,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // image support
   document.querySelectorAll('img[data-dummy]').forEach(el => {
-    el.src = 'https://placehold.it/' + (el.getAttribute('data-dummy') || el.parentNode.offsetWidth);
+    // note: el.parentNode.offsetWidth can be 0 if hidden/not loaded
+    const imageSize = (el.getAttribute('data-dummy') || el.parentNode.offsetWidth || '404');
+    el.src = 'https://placehold.it/' + imageSize;
 
     el.removeAttribute('data-dummy');
   });
