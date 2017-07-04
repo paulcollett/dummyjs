@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
     .forEach(el => {
     const wordCount = +el.getAttribute('data-dummy') || 10;
 
-    let lib = `lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel
-      dolor nec viverra nullam at auctor enim id condimentum odio in laoreet libero
-      libero a tincidunt est sagittis id curabitur vitae`;
+    let lib = 'lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel ' +
+      'dolor nec viverra nullam at auctor enim id condimentum odio in laoreet libero ' +
+      'libero a tincidunt est sagittis id curabitur vitae';
 
     const libRepeat = Math.ceil(wordCount/lib.split(' ').length);
 
