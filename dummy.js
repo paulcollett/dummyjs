@@ -51,9 +51,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // image support
   document.querySelectorAll('img[data-dummy]').forEach(el => {
-    // note: el.parentNode.offsetWidth can be 0 if hidden/not loaded
-    const imageSize = (el.getAttribute('data-dummy') || el.parentNode.offsetWidth || '404');
-    el.src = 'https://placehold.it/' + imageSize;
+    const providedImageSize = [parseInt(el.getAttribute('width') || el.offsetWidth),parseInt(el.getAttribute('height') || el.offsetHeight)].filter((v) => {return !!v}).join('x');
+    const size = (el.getAttribute('data-dummy') || providedImageSize || el.parentNode.offsetWidth || '404');
+
+    if(el.getAttribute('data-image') && parseInt(size) <= 1280) { // loremflickr caps size at 1280
+      el.src = 'https://loremflickr.com/'
+        + size.indexOf('x') ? size.replace('x', '/') : (size + '/' + size)
+        + '/' + encodeURI(el.getAttribute('data-image')) + '/all' + '?' + (+new Date());
+    } else {
+      el.src = 'https://placehold.it/'
+        + (parseInt(size) >= 4000 ? 3999 : size) // placehold caps size at 3999
+        + '/' + (el.getAttribute('data-color') || 'ccc')
+        + '/' + (el.getAttribute('data-text-color') || '888')
+        + (el.getAttribute('data-text') && '?text=' + encodeURI(el.getAttribute('data-text')) || '');
+    }
 
     el.removeAttribute('data-dummy');
   });
