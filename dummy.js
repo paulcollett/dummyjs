@@ -52,14 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // image support
   document.querySelectorAll('img[data-dummy]').forEach(el => {
     const providedImageSize = [parseInt(el.getAttribute('width') || el.offsetWidth),parseInt(el.getAttribute('height') || el.offsetHeight)].filter((v) => {return !!v}).join('x');
-    const size = (el.getAttribute('data-dummy') || providedImageSize || el.parentNode.offsetWidth || '404');
+    const size = '' + (el.getAttribute('data-dummy') || providedImageSize || el.parentNode.offsetWidth || '404');
 
-    if(el.getAttribute('data-image') && parseInt(size) <= 1280) { // loremflickr caps size at 1280
+    if(el.getAttribute('data-picture') && parseInt(size) <= 1280) { // loremflickr caps size at 1280
       el.src = 'https://loremflickr.com/'
-        + size.indexOf('x') ? size.replace('x', '/') : (size + '/' + size)
-        + '/' + encodeURI(el.getAttribute('data-image')) + '/all' + '?' + (+new Date());
+        + (size.indexOf('x') > 0 ? size.replace('x', '/') : (size + '/' + size))
+        + '/' + encodeURI(el.getAttribute('data-picture')) + '/all' + '?' + (+new Date());
     } else {
-      el.src = 'https://placehold.it/'
+      el.src = 'https://via.placeholder.com/'
         + (parseInt(size) >= 4000 ? 3999 : size) // placehold caps size at 3999
         + '/' + (el.getAttribute('data-color') || 'ccc')
         + '/' + (el.getAttribute('data-text-color') || '888')
