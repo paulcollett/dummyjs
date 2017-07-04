@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let tags = 'h1,h2,h3,h4,h5,ul,ol,table,blockquote'.split(',').join(',p,').split(',');
 
     tags = tags.map(tag => `<${tag} data-dummy></${tag}>`).join('')
-      + '<p data-dummy="150">This <strong>is a longer</strong> <em>paragraph</em> <a href="#">with a link</a>. </p>'
+      + '<hr /><p data-dummy="150">This <strong>is a longer</strong> <em>paragraph</em> <a href="#">with a link</a>. </p>'
       + '<img data-dummy="800" /><p data-dummy="70" data-repeat=4></p>';
 
     el.innerHTML += tags;
@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const min = Math.floor(wordCount[0]);
       const max = Math.floor(wordCount[1]) + 1;
       wordCount = Math.floor(Math.random() * (max - min)) + min;
-      console.log(min, max, wordCount);
     } else {
       wordCount = Math.floor(wordCount[0]) || 10;
     }
