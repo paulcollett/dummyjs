@@ -73,7 +73,18 @@ document.addEventListener('DOMContentLoaded', () => {
   Array.from(document.querySelectorAll('[data-dummy]'))
     .sort((a, b) => a.compareDocumentPosition(b) & 2 ? -1 : 1)
     .forEach(el => {
-    const wordCount = +el.getAttribute('data-dummy') || 10;
+
+    let wordCount = el.getAttribute('data-dummy').split(',');
+
+    if(+wordCount[0] && +wordCount[1]) {
+      // word count range data-dummy="5,20"
+      const min = Math.floor(wordCount[0]);
+      const max = Math.floor(wordCount[1]) + 1;
+      wordCount = Math.floor(Math.random() * (max - min)) + min;
+      console.log(min, max, wordCount);
+    } else {
+      wordCount = Math.floor(wordCount[0]) || 10;
+    }
 
     let lib = 'lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel ' +
       'dolor nec viverra nullam at auctor enim id condimentum odio in laoreet libero ' +
