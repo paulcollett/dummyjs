@@ -2,15 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // copy element support
   // todo: external file support
   // todo: merge attributes
-  Array.from(document.querySelectorAll('[data-copy]'))
+  for (let i = 0; i < 3; i++) Array.from(document.querySelectorAll('[data-copy]'))
     .sort((a, b) => a.compareDocumentPosition(b) & 2 ? 1 : -1) // inner first then parents
     .forEach(el => {
       const selector = el.getAttribute('data-copy');
-      const elToCopy = document.querySelector(selector) || document.getElementById(selector) || document.getElementsByClassName(selector)[0];
+      let elToCopy = document.querySelector(selector) || document.getElementById(selector) || document.getElementsByClassName(selector)[0];
+      
       if(!elToCopy) {
-        elToCopy = {outerHTML: '("' + selector + '" element not found in data-copy)'};
+        elToCopy = {outerHTML: 'data-copy="' + selector + '" element not found'};
       }
-      console.dir(elToCopy);
+
       el.outerHTML = (elToCopy.tagName == 'SCRIPT' || elToCopy.tagName == 'TEMPLATE') ? elToCopy.innerHTML : elToCopy.outerHTML;
   });
 
