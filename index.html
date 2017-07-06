@@ -225,85 +225,6 @@
     </div>
   </div>
 
-  <div class="contain contain--full u-mb-60">
-    <div class="doc-heading u-mb-20">Combining the above into a real use case</div>
-
-    <div class="example-section">
-      <div class="example-section_contain">
-        <div class="example-layout">
-          <div class="example-layout_sidebar">
-            <div class="">
-              <div class="">Dynamic Filter Label</div>
-              <div class="">Dynamic Category</div>
-            </div>
-          </div>
-          <div class="example-layout_column">
-            <div class="example-grid">
-              <div class="example-grid_item">
-                <img data-dummy />
-                <div class="">Dynamic Title</div>
-                <div class="">Dynamic Description</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="example-arrow">
-      <svg viewbox="0 0 50 100" width="50px" height="100px">
-        <polyline points="25 0, 25 100" stroke="#333" />
-        <polyline points="5 75, 25 100, 45 75" stroke="#333" fill="transparent" />
-      </svg>
-    </div>
-
-    <div class="example-section">
-      <div class="example-section_contain">
-        <div class="example-layout">
-          <div class="example-layout_sidebar">
-            <div class="" data-repeat="2">
-              <div class=""><strong data-dummy="1,2"></strong></div>
-              <div class="" data-dummy="1,3" data-repeat="3"></div>
-            </div>
-          </div>
-          <div class="example-layout_column">
-            <div class="example-grid">
-              <div class="example-grid_item" data-repeat="6">
-                <img data-dummy />
-                <div data-dummy class=""></div>
-                <div data-dummy class=""></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="contain u-mb-60">
-    <div class="doc-heading u-mb-20">Kitchen Sink</div>
-
-    <div class="code-label u-mb-10 u-text-c">Quick way to test styling of common tags. Useful for:</div>
-    <div class="u-text-c u-mb-20">
-      <ul class="description-list u-text-l">
-        <li>Base styling</li>
-        <li>Testing CMS outputted HTML, like:
-          <ul> 
-            <li>blog posts</li>
-            <li>potential page content</li>
-            <li>product descriptions</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="code-block u-text-c u-mb-40">
-      &lt;div data-dummy="sink">&lt;/div>
-    </div>
-
-    <div class="example-sink" data-dummy="sink"></div>
-  </div>
-
 
   <div class="contain u-mb-60">
     <div class="doc-heading u-mb-20">Copy elements to different locations</div>
@@ -361,6 +282,96 @@
         </div>
       </div>
     </div>
+  </div>
+
+
+  <div class="contain contain--full u-mb-60">
+    <div class="doc-heading u-mb-20">Combining the above into a real use case</div>
+
+    <div class="example-section">
+      <div class="example-section_contain">
+        <div class="example-layout">
+          <div class="example-layout_sidebar">
+            <div class="u-mb-20 u-pt-10" data-ex-label="data-repeat=2">
+              <div class="u-mb-10"><strong data-ex-label="data-dummy=1,2">Dynamic Filter Label</strong></div>
+              <div class="u-pt-10" data-ex-label="data-dummy=&quot;1,3&quot; data-repeat=&quot;3&quot;">Dynamic Category</div>
+            </div>
+          </div>
+          <div class="example-layout_column">
+            <div class="example-pagination">
+              <div class="example-pagination_item">&larr;</div>
+              <div class="example-pagination_item">More &rarr; </div>
+            </div>
+            <div class="example-grid">
+              <div class="example-grid_item" data-ex-label="data-repeat=&quot;6&quot;">
+                <img data-dummy="400" data-ex-label="data-dummy=400" />
+                <div class="" data-ex-label="data-dummy">Dynamic Title</div>
+                <div class="" data-ex-label="data-dummy">Dynamic Description</div>
+              </div>
+            </div>
+            <div data-ex-label="data-copy=&quot;.example-pagination&quot;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-arrow">
+      <svg viewbox="0 0 50 100" width="50px" height="100px">
+        <polyline points="25 0, 25 100" stroke="#333" />
+        <polyline points="5 75, 25 100, 45 75" stroke="#333" fill="transparent" />
+      </svg>
+    </div>
+
+    <div class="example-section">
+      <div class="example-section_contain">
+        <div class="example-layout">
+          <div class="example-layout_sidebar">
+            <div class="" data-repeat="2">
+              <div class=""><strong data-dummy="1,2"></strong></div>
+              <div class="" data-dummy="1,3" data-repeat="3"></div>
+            </div>
+          </div>
+          <div class="example-layout_column">
+            <div class="example-pagination">
+              <div class="example-pagination_item">&larr;</div>
+              <div class="example-pagination_item">More &rarr; </div>
+            </div>
+            <div class="example-grid">
+              <div class="example-grid_item" data-repeat="6">
+                <img data-dummy />
+                <div data-dummy class=""></div>
+                <div data-dummy class=""></div>
+              </div>
+            </div>
+            <div data-copy=".example-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="contain u-mb-60">
+    <div class="doc-heading u-mb-20">Kitchen Sink</div>
+
+    <div class="code-label u-mb-10 u-text-c">Quick way to test styling of common tags. Useful for:</div>
+    <div class="u-text-c u-mb-20">
+      <ul class="description-list u-text-l">
+        <li>Base styling</li>
+        <li>Testing CMS outputted HTML, like:
+          <ul> 
+            <li>blog posts</li>
+            <li>potential page content</li>
+            <li>product descriptions</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="code-block u-text-c u-mb-40">
+      &lt;div data-dummy="sink">&lt;/div>
+    </div>
+
+    <div class="example-sink" data-dummy="sink"></div>
   </div>
 
 
