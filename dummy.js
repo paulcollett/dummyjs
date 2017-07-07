@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const rand = function(min, max) {
+    if(!min || !max) return min;
+    min = Math.floor(min);
+    max = Math.floor(max) + 1;
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
+
   // copy element support
   // todo: external file support
   // todo: merge attributes
@@ -52,8 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // image support
   document.querySelectorAll('img[data-dummy]').forEach(el => {
-    const providedImageSize = [parseInt(el.getAttribute('width') || el.offsetWidth),parseInt(el.getAttribute('height') || el.offsetHeight)].filter((v) => {return !!v}).join('x');
-    const size = '' + (el.getAttribute('data-dummy') || providedImageSize || el.parentNode.offsetWidth || '404');
+    const providedImageSize = [parseInt(el.getAttribute('width') || el.offsetWidth), parseInt(el.getAttribute('height') || el.offsetHeight)].filter((v) => {return !!v}).join('x');
+    let size = '' + (el.getAttribute('data-dummy') || providedImageSize || el.parentNode.offsetWidth || '404');
+    
+    // split size to allow for random ranges
+    size = size.split('x').map((a)=>rand(a.split(',')[0],a.split(',')[1])).join('x');
 
     if(el.getAttribute('data-picture') && parseInt(size) <= 1280) { // loremflickr caps size at 1280
       el.src = 'https://loremflickr.com/'
@@ -76,19 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
     .forEach(el => {
 
     let wordCount = el.getAttribute('data-dummy').split(',');
-
-    if(+wordCount[0] && +wordCount[1]) {
-      // word count range data-dummy="5,20"
-      const min = Math.floor(wordCount[0]);
-      const max = Math.floor(wordCount[1]) + 1;
-      wordCount = Math.floor(Math.random() * (max - min)) + min;
-    } else {
-      wordCount = Math.floor(wordCount[0]) || 10;
-    }
+    wordCount = rand(wordCount[0], wordCount[1]) || 10;
 
     let lib = 'lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel ' +
-      'dolor nec viverra nullam at auctor enim id condimentum odio in laoreet libero ' +
-      'libero a tincidunt est sagittis id curabitur vitae';
+      'dolor nec viverra nullam auctor enim condimentum odio laoreet libero ' +
+      'libero tincidunt est sagittis curabitur vitae';
+    
+    if(wordCount > 3) lib += ' a in id id at';
 
     const libRepeat = Math.ceil(wordCount/lib.split(' ').length);
 
