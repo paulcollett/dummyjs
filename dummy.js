@@ -96,11 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let wordCount = el.getAttribute('data-dummy').split(',');
     wordCount = rand(wordCount[0], wordCount[1]) || 10;
 
-    let lib = 'lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel ' +
+    let lib = window.DUMMYJS_WORDS || 'lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel ' +
       'dolor nec viverra nullam auctor enim condimentum odio laoreet libero ' +
       'libero tincidunt est sagittis curabitur vitae';
     
-    if(wordCount > 3) lib += ' a in id id at';
+    if(wordCount > 3) lib += (' ' + (window.DUMMYJS_SHORT_WORDS || 'a in id id at'));
 
     const libRepeat = Math.ceil(wordCount/lib.split(' ').length);
 
