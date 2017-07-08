@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // copy element support
-  // todo: external file support
-  // todo: merge attributes
   for (let i = 0; i < 3; i++) Array.from(document.querySelectorAll('[data-copy]'))
     .sort((a, b) => a.compareDocumentPosition(b) & 2 ? 1 : -1) // inner first then parents
     .forEach(el => {
@@ -63,19 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let size = '' + (el.getAttribute('data-dummy') || providedImageSize || el.parentNode.offsetWidth || '404');
     
     // split size to allow for random ranges
-    size = size.split('x').map((a)=>rand(a.split(',')[0],a.split(',')[1])).join('x');
+    size = size.split('x').map((a)=>
+      Math.min(rand(a.split(',')[0], a.split(',')[1]), 3999) // placehold caps size at 3999
+    ).join('x');
 
-    if(el.getAttribute('data-picture') && parseInt(size) <= 1280) { // loremflickr caps size at 1280
-      el.src = 'https://loremflickr.com/'
-        + (size.indexOf('x') > 0 ? size.replace('x', '/') : (size + '/' + size))
-        + '/' + encodeURI(el.getAttribute('data-picture')) + '/all' + '?' + (+new Date());
-    } else {
-      el.src = 'https://via.placeholder.com/'
-        + (parseInt(size) >= 4000 ? 3999 : size) // placehold caps size at 3999
-        + '/' + (el.getAttribute('data-color') || 'ccc')
-        + '/' + (el.getAttribute('data-text-color') || '888')
-        + (el.getAttribute('data-text') && '?text=' + encodeURI(el.getAttribute('data-text')) || '');
-    }
+    el.src = 'https://via.placeholder.com/' + size
+      + '/' + (el.getAttribute('data-color') || 'ccc')
+      + '/' + (el.getAttribute('data-text-color') || '888')
+      + (el.getAttribute('data-text') && '?text=' + encodeURI(el.getAttribute('data-text')) || '');
 
     el.removeAttribute('data-dummy');
   });
