@@ -80,8 +80,16 @@ document.addEventListener('DOMContentLoaded', () => {
     el.removeAttribute('data-dummy');
   });
 
+  const dummyTextEls = Array.from(document.querySelectorAll('[data-dummy]'));
+
+  // prevent page translation to latin containing majority dummy text
+  let meta = document.createElement('meta');
+  meta.name = 'google';
+  meta.content = 'notranslate';
+  dummyTextEls.length && document.querySelector('head').appendChild(meta);
+
   // text support
-  Array.from(document.querySelectorAll('[data-dummy]'))
+  dummyTextEls
     .sort((a, b) => a.compareDocumentPosition(b) & 2 ? -1 : 1)
     .forEach(el => {
 
