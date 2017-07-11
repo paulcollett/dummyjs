@@ -61,14 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let size = '' + (el.getAttribute('data-dummy') || providedImageSize || el.parentNode.offsetWidth || '404');
     
     // split size to allow for random ranges
-    size = size.split('x').map((a)=>
-      Math.min(rand(a.split(',')[0], a.split(',')[1]), 3999) // placehold caps size at 3999
-    ).join('x');
+    size = size.split('x').map((a)=> rand(a.split(',')[0], a.split(',')[1]));
 
-    el.src = 'https://via.placeholder.com/' + size
-      + '/' + (el.getAttribute('data-color') || 'ccc')
-      + '/' + (el.getAttribute('data-text-color') || '888')
-      + (el.getAttribute('data-text') && '?text=' + encodeURI(el.getAttribute('data-text')) || '');
+    const w = size[0];
+    const h = (size[1]||size[0]);
+    const text = (el.getAttribute('data-text') || (w + '×' + h));
+    const bgColor = (el.getAttribute('data-color') || '#ccc');
+    const textColor = (el.getAttribute('data-text-color') || '#888');
+    const fontSize = (w / 3.5 / (text.length * 0.3)) - text.length;
+
+    el.src = 'data:image/svg+xml,'
+      + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+ w + 'px" height="' + h + 'px">'
+      + '<rect x="0" y="0" width="100%" height="100%" fill="' + bgColor + '"/>'
+      + '<line opacity="0.5" x1="0%" y1="0%" x2="100%" y2="100%" stroke="' + textColor + '" stroke-width="2" />'
+      + '<line opacity="0.5" x1="100%" y1="0%" x2="0%" y2="100%" stroke="' + textColor + '" stroke-width="2" />'
+      + '<text stroke="' + bgColor + '" stroke-width="2em" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="'+fontSize+'">' + text + '</text>'
+      + '<text fill="' + textColor + '" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="'+fontSize+'" font-family="sans-serif">' + text + '</text>'
+      + '</svg>');
 
     el.removeAttribute('data-dummy');
   });
