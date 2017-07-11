@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
   Array.from(document.querySelectorAll('[data-repeat]'))
     .sort((a, b) => a.compareDocumentPosition(b) & 2 ? -1 : 1)
     .forEach(el => {
-      el.outerHTML = el.outerHTML.repeat(+el.getAttribute('data-repeat') || 4)
+      const amount = el.getAttribute('data-repeat');
+      el.outerHTML = el.outerHTML.repeat(rand(amount.split(',')[0], amount.split(',')[1]) || 4)
   });
 
   // image support
