@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const textColor = (el.getAttribute('data-text-color') || '#888');
     const fontSize = (w / 3.5 / (text.length * 0.3)) - text.length;
 
-    el.src = 'data:image/svg+xml,'
+    el.src = window.DUMMYJS_IMG_SRC && window.DUMMYJS_IMG_SRC(size[0], size[1], el) || 'data:image/svg+xml,'
       + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+ w + 'px" height="' + h + 'px">'
       + '<rect x="0" y="0" width="100%" height="100%" fill="' + bgColor + '"/>'
       + '<line opacity="0.5" x1="0%" y1="0%" x2="100%" y2="100%" stroke="' + textColor + '" stroke-width="2" />'
