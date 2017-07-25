@@ -37,8 +37,11 @@
   <div class="contain u-mb-60">
     <div class="doc-heading u-mb-10">Start using this right now</div>
     <div class="code-label u-mb-20 u-text-c">Place before the &lt;/body> tag (at least after all your markup)</div>
-    <div class="code-block code-block--hero">
+    <div class="code-block code-block--hero u-mb-10">
       &lt;script src="http://dummyjs.com/dummy.js"&gt;&lt;/script&gt;
+    </div>
+    <div class="disclaimer u-text-c">
+      Hosted on GitHub Pages, (soon.. the SSL option is provided via <a href="https://blog.cloudflare.com/introducing-universal-ssl/" taret="_blank">CloudFlare’s free Universal SSL</a> offering)
     </div>
   </div>
 
@@ -154,7 +157,11 @@
         <div class="code-label">Repeat a element `data-repeat="3"`</div>
       </div>
       <div class="doc-grid_item">
-        <div class="code-block">(todo)</div>
+        <div class="code-block code-block--pre">
+          &lt;ul>
+            &lt;li <strong>data-repeat="3"</strong>>My list item&lt;/li>
+          &lt;/ul>
+        </div>
       </div>
       <div class="doc-grid_item">
         <div class="rendered-block">
@@ -170,7 +177,11 @@
         <div class="code-label">Combine with `data-dummy`</div>
       </div>
       <div class="doc-grid_item">
-        <div class="code-block">(todo)</div>
+        <div class="code-block code-block--pre">
+          &lt;ul>
+            &lt;li <strong>data-dummy="3"</strong> <strong>data-repeat="3"</strong>>&lt;/li>
+          &lt;/ul>
+        </div>
       </div>
       <div class="doc-grid_item">
         <div class="rendered-block">
@@ -183,19 +194,29 @@
 
     <div class="doc-grid">
       <div class="doc-grid_item doc-grid_item--full">
-        <div class="code-label">Range `data-repeat="2,5"`</div>
+        <div class="code-label">Random Range `data-repeat="2,5"`</div>
       </div>
       <div class="doc-grid_item">
-        <div class="code-block">(todo)</div>
+        <div class="code-block code-block--pre">
+          &lt;ul>
+            &lt;li data-dummy="1,3" <strong>data-repeat="2,5"</strong>>&lt;/li>
+          &lt;/ul>
+        </div>
       </div>
       <div class="doc-grid_item">
         <div class="rendered-block">
           <ul class="example-ul">
-            <li data-dummy="1,3" data-repeat></li>
+            <li data-dummy="1,3" data-repeat="2,5"></li>
           </ul>
         </div>
       </div>
     </div>
+  </div>
+
+
+  <div class="github-btn-positioning u-mb-40">
+    <em style="opacity: 0.5">Bookmark to your GitHub starred list &mdash;</em>&nbsp;
+    <iframe src="https://ghbtns.com/github-btn.html?user=paulcollett&repo=dummyjs&type=star&count=true&size=small" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>
   </div>
 
 
@@ -349,6 +370,16 @@
 
 
   <div class="contain u-mb-60">
+    <div class="doc-heading">Find easily next time</div>
+    <div class="doc-heading doc-heading--github u-mb-20">Add dummyjs to your GitHub stared list</div>
+    <div class="github-btn-positioning">
+
+<iframe src="https://ghbtns.com/github-btn.html?user=paulcollett&repo=dummyjs&type=star&count=true&size=large" frameborder="0" scrolling="0" width="125px" height="30px"></iframe>
+
+    </div>
+  </div>
+
+  <div class="contain">
     <div id="backstory" class="doc-heading u-mb-20">Backstory</div>
 
     <div class="backstory-contain u-mb-20">
@@ -357,8 +388,8 @@
 
 <p class="backstory-para u-mb-10">In a continuous effort to streamline I took a step back an realised that testing fake images and text was a time consuming but crucial step. It was important to simulate dynamic content, word wrapping, repeating of elements etc. to battle test edge case scenarios so simplify this step and make it as pain free as possible was time well spent.</p>
 
-<p class="backstory-para">Dummy.js is that aid, and I hope you find at
-least a portion of value with it in your workflow as I do.</p>
+<p class="backstory-para">Dummy.js is that aid. Hope it speeds up and helps crash test your next build</p>
+
 
 
     </div>
@@ -373,17 +404,6 @@ least a portion of value with it in your workflow as I do.</p>
         <iframe src="https://ghbtns.com/github-btn.html?user=paulcollett&type=follow" frameborder="0" scrolling="0" width="135px" height="20px"></iframe>
 
       </div>
-    </div>
-  </div>
-
-
-  <div class="contain">
-    <div class="doc-heading">Find easily next time</div>
-    <div class="doc-heading doc-heading--github u-mb-20">Add dummyjs to your GitHub stared list</div>
-    <div class="github-btn-positioning">
-
-<iframe src="https://ghbtns.com/github-btn.html?user=paulcollett&repo=dummyjs&type=star&count=true&size=large" frameborder="0" scrolling="0" width="125px" height="30px"></iframe>
-
     </div>
   </div>
 
