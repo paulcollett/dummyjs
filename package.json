@@ -1,0 +1,25 @@
+{
+  "name": "dummyjs",
+  "version": "0.0.1",
+  "description": "placeholder text & images for HTML prototyping",
+  "main": "dummy.js",
+  "author": "Paul Collett",
+  "license": "MIT",
+  "scripts": {
+    "dev": "serve ./"
+  },
+  "files": [
+    "dummy.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulcollett/dummyjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/paulcollett/dummyjs/issues"
+  },
+  "homepage": "https://dummyjs.com/",
+  "devDependencies": {
+    "serve": "^6.1.0"
+  }
+}
