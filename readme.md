@@ -1,10 +1,20 @@
-One dummy that shouldnt suck
+
+### Dummy.js – Crash test your front-end builds, with:
+#### repeatable elements, dummy text & placeholder images
+
+![dummy.js](https://user-images.githubusercontent.com/1904774/30825787-1ef4c8aa-a1e9-11e7-843c-3c8e685a98a4.png)
+
+Dummy.js is simple drop in script that provides tools in helping build your front-end HTML & CSS.
+
+_Latest documentation & Examples at:_
+### https://dummyjs.com/
+
 
 ## Usage
 
-Add to your page
+Add to your HTML page:
 
-`<script src="https://paulcollett.github.io/dummyjs/dummy.js"></script>`
+`<script src="https://dummyjs.com/dummy.js"></script>`
 
 ## Dummy Text
 
@@ -36,6 +46,6 @@ Output all the common tags inc. headings, paragraphs etc. Great for base styling
 
 `<div data-dummy="sink"></div>`
 
-## Example
+## More Docs & Examples:
 
-`https://paulcollett.github.io/dummyjs/`
+`https://dummyjs.com/`
