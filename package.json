@@ -6,7 +6,7 @@
   "author": "Paul Collett",
   "license": "MIT",
   "scripts": {
-    "dev": "serve ./"
+    "dev": "cd ./website-assets && gulp serve"
   },
   "files": [
     "dummy.js"
@@ -19,7 +19,5 @@
     "url": "https://github.com/paulcollett/dummyjs/issues"
   },
   "homepage": "https://dummyjs.com/",
-  "devDependencies": {
-    "serve": "^6.1.0"
-  }
+  "devDependencies": {}
 }
