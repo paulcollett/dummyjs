@@ -2,7 +2,7 @@
 ### Dummy.js – Crash test your front-end builds, with:
 #### repeatable elements, dummy text & placeholder images
 
-![dummy.js](https://user-images.githubusercontent.com/1904774/30825787-1ef4c8aa-a1e9-11e7-843c-3c8e685a98a4.png)
+![dummy.js](https://user-images.githubusercontent.com/1904774/31058166-1dade7b4-a6a4-11e7-8005-7c143fd3a60e.png)
 
 Dummy.js is simple drop in script that provides tools in helping build your front-end HTML & CSS.
 
