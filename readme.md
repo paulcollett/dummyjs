@@ -63,4 +63,4 @@ Duplicate elements into other areas on your webpage. Pass a CSS selector like `.
 
 ## More Docs & Examples:
 
-`https://dummyjs.com/`
+https://dummyjs.com/
