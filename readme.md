@@ -21,30 +21,45 @@ Add to your HTML page:
 `<p data-dummy></p>`
 
 Choose the amount of words:
-`<p data-dummy="150"></p>` 
+`<p data-dummy="150"></p>`
 
 Render dummy markup for `ol` `ul` `table`:
-`<table data-dummy></table>` 
+`<table data-dummy></table>`
+
+Choose random amount of words between 3 & 10:
+`<p data-dummy="3,10"></p>`
 
 ## Dummy Images
 
 `<img data-dummy="400x300" />`
 
-Custom Text
-`<img data-dummy="400x300?text=person" />`
-
 Defaults to the size of the parent container
-`<img data-dummy />` 
+`<img data-dummy />`
+
+Custom Text
+`<img data-dummy="400x300" data-text="person" />`
+
+Custom Colors
+`<img data-dummy="400x300" data-color="#0000ff" data-text-color="#fff" />`
 
 ## Repeat Elements
 
 `<div data-repeat="3">Team Member</div>`
+
+Repeat random amount between 3 & 10:
+`<p data-repeat="3,10"></p>`
 
 ## Kitchen Sink
 
 Output all the common tags inc. headings, paragraphs etc. Great for base styling
 
 `<div data-dummy="sink"></div>`
+
+## Copy Elements
+
+Duplicate elements into other areas on your webpage. Pass a CSS selector like `.myelement` or `.post h3`
+
+`<div data-copy=".pagination"></div>`
 
 ## More Docs & Examples:
 
