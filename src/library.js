@@ -32,9 +32,9 @@ const src = (argString, el) => {
 
   const w = size[0];
   const h = (size[1]||size[0]);
-  const text = (el.getAttribute('data-text') || (w + '×' + h));
-  const bgColor = (el.getAttribute('data-color') || '#ccc');
-  const textColor = (el.getAttribute('data-text-color') || '#888');
+  const text = (el && el.getAttribute('data-text') || (w + '×' + h));
+  const bgColor = (el && el.getAttribute('data-color') || '#ccc');
+  const textColor = (el && el.getAttribute('data-text-color') || '#888');
   const fontSize = (w / 3.5 / (text.length * 0.3)) - text.length;
 
   return 'data:image/svg+xml,'

@@ -54,9 +54,9 @@ var src = function (argString, el) {
 
   var w = size[0];
   var h = (size[1]||size[0]);
-  var text = (el.getAttribute('data-text') || (w + '×' + h));
-  var bgColor = (el.getAttribute('data-color') || '#ccc');
-  var textColor = (el.getAttribute('data-text-color') || '#888');
+  var text = (el && el.getAttribute('data-text') || (w + '×' + h));
+  var bgColor = (el && el.getAttribute('data-color') || '#ccc');
+  var textColor = (el && el.getAttribute('data-text-color') || '#888');
   var fontSize = (w / 3.5 / (text.length * 0.3)) - text.length;
 
   return 'data:image/svg+xml,'
