@@ -1,3 +1,8 @@
+/*!
+ * DummyJS v1.0.1
+ * http://dummyjs.com/
+ */
+
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -150,9 +155,19 @@ var updateDom = function() {
 
 if(document && document.addEventListener) {
   document.addEventListener('DOMContentLoaded', updateDom);
+
+  Dummy$1.updateDom = updateDom;
 }
 
-Dummy$1.updateDom = updateDom;
+if(window && window.jQuery) {
+  window.jQuery.fn.dummy = function(args) {
+    window.jQuery(this).each(function() {
+      this.nodeName.toLowerCase() === 'img'
+        ? this.src = Dummy$1.src(args, this)
+        : this.innerHTML = Dummy$1.text(args);
+    });
+  };
+}
 
 return Dummy$1;
 

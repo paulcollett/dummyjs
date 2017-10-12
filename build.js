@@ -1,16 +1,38 @@
 var fs = require('fs');
 var rollup = require('rollup');
 var buble = require('rollup-plugin-buble');
+var package = require('./package.json');
+var banner =
+    "/*!\n" +
+    " * DummyJS v" + package.version + "\n" +
+    " * http://dummyjs.com/\n" +
+    " */\n";
 
 rollup.rollup({
-  input: 'src/index.js',
+  input: 'src/browser.js',
   plugins: [buble()]
 })
 .then(bundle =>
   bundle.generate({
     format: 'umd',
+    banner: banner,
     name: 'Dummy',
   }).then(({code}) => write('dummy.js', code, bundle))
+);
+
+rollup.rollup({
+  input: 'src/module.js',
+  plugins: [buble()]
+})
+.then(bundle =>
+  bundle.generate({
+    format: 'es',
+  }).then(({code}) => write('dummy-module-es2015.js', code, bundle))
+)
+.then(bundle =>
+  bundle.generate({
+    format: 'cjs',
+  }).then(({code}) => write('dummy-module-cjs.js', code, bundle))
 );
 
 function write(dest, code, bundle) {

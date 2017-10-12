@@ -65,5 +65,22 @@ Duplicate elements into other areas on your webpage. Pass a CSS selector like `.
 
 https://dummyjs.com/
 
-Vue.js Support:
+### Use with jQuery & Frameworks
+Vanilla Javascript:
+```JS
+Dummy.text('30,30')
+Dummy.src('300x400')
+```
+
+jQuery:
+```JS
+jQuery('p').dummy('30')
+```
+
+Vue.js:
 https://www.npmjs.com/package/vue-dummy
+
+Other Frameworks / Module Builders: `npm install dummyjs --save`
+```JS
+var Dummy = require('dummyjs');
+```

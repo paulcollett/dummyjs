@@ -1,8 +1,10 @@
 {
   "name": "dummyjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "placeholder text & images for HTML prototyping",
-  "main": "dummy.js",
+  "main": "dummy-module-cjs.js",
+  "module": "dummy-module-es2015.js",
+  "browser": "dummy.js",
   "author": "Paul Collett",
   "license": "MIT",
   "scripts": {
@@ -10,7 +12,9 @@
     "dev": "npm run build && cd ./website-assets && gulp serve"
   },
   "files": [
-    "dummy.js"
+    "dummy.js",
+    "dummy-module-cjs.js",
+    "dummy-module-es2015.js"
   ],
   "repository": {
     "type": "git",

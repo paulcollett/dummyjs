@@ -1,5 +1,5 @@
-import Dummy from './library.js'
-import Utils from './utils.js'
+import Dummy from './lib/core.js'
+import Utils from './lib/utils.js'
 
 const updateDom = function() {
   // copy element support
@@ -78,8 +78,18 @@ const updateDom = function() {
 
 if(document && document.addEventListener) {
   document.addEventListener('DOMContentLoaded', updateDom);
+
+  Dummy.updateDom = updateDom;
 }
 
-Dummy.updateDom = updateDom;
+if(window && window.jQuery) {
+  window.jQuery.fn.dummy = function(args) {
+    window.jQuery(this).each(function() {
+      this.nodeName.toLowerCase() === 'img'
+        ? this.src = Dummy.src(args, this)
+        : this.innerHTML = Dummy.text(args);
+    });
+  }
+}
 
 export default Dummy;
