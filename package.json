@@ -1,12 +1,13 @@
 {
   "name": "dummyjs",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "placeholder text & images for HTML prototyping",
   "main": "dummy.js",
   "author": "Paul Collett",
   "license": "MIT",
   "scripts": {
-    "dev": "cd ./website-assets && gulp serve"
+    "build": "node ./build.js",
+    "dev": "npm run build && cd ./website-assets && gulp serve"
   },
   "files": [
     "dummy.js"
@@ -19,5 +20,8 @@
     "url": "https://github.com/paulcollett/dummyjs/issues"
   },
   "homepage": "https://dummyjs.com/",
-  "devDependencies": {}
+  "devDependencies": {
+    "rollup": "^0.50.0",
+    "rollup-plugin-buble": "^0.16.0"
+  }
 }
