@@ -1,12 +1,12 @@
 
-### Dummy.js – Crash test your front-end builds, with:
-#### repeatable elements, dummy text & placeholder images
+### Dummy.js – Crash test your front-end builds with:
+#### Repeatable Elements, Dummy Text and Placeholder Images
 
 ![dummy.js](https://user-images.githubusercontent.com/1904774/31058166-1dade7b4-a6a4-11e7-8005-7c143fd3a60e.png)
 
-Dummy.js is simple drop in script that provides tools in helping build your front-end HTML & CSS.
+Dummy.js is a simple drop-in script that provides tools to help you build your front-end HTML & CSS.
 
-_Latest documentation & Examples at:_
+_Latest documentation and examples at:_
 ### https://dummyjs.com/
 
 
@@ -26,7 +26,7 @@ Choose the amount of words:
 Render dummy markup for `ol` `ul` `table`:
 `<table data-dummy></table>`
 
-Choose random amount of words between 3 & 10:
+Choose a random amount of words between 3 and 10:
 `<p data-dummy="3,10"></p>`
 
 ## Dummy Images
@@ -46,26 +46,26 @@ Custom Colors
 
 `<div data-repeat="3">Team Member</div>`
 
-Repeat random amount between 3 & 10:
+Repeat random amount of times between 3 and 10:
 `<p data-repeat="3,10"></p>`
 
 ## Kitchen Sink
 
-Output all the common tags inc. headings, paragraphs etc. Great for base styling
+Output all the common tags incl. headings, paragraphs, etc. Great for base styling.
 
 `<div data-dummy="sink"></div>`
 
 ## Copy Elements
 
-Duplicate elements into other areas on your webpage. Pass a CSS selector like `.myelement` or `.post h3`
+Duplicate elements into other areas of your webpage. Pass a CSS selector like `.myelement` or `.post h3`
 
 `<div data-copy=".pagination"></div>`
 
-## More Docs & Examples:
+## More Docs and Examples at:
 
 https://dummyjs.com/
 
-### Use with jQuery & Frameworks
+### Use with jQuery and Frameworks
 Vanilla Javascript:
 ```JS
 Dummy.text('30,30')
