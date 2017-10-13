@@ -4,20 +4,21 @@
 
 ![dummy.js](https://user-images.githubusercontent.com/1904774/31058166-1dade7b4-a6a4-11e7-8005-7c143fd3a60e.png)
 
-Dummy.js is a simple drop-in script that provides tools to help you build your front-end HTML & CSS.
+Dummy.js is a simple drop-in script that makes it easy to fill your HTML with dummy text and images for development.
 
-_Latest documentation and examples at:_
+_Latest documentation and examples are available at:_
 ### https://dummyjs.com/
 
 
 ## Usage
 
-Add to your HTML page:
+Add the script tag to your HTML page:
 
 `<script src="https://dummyjs.com/dummy.js"></script>`
 
 ## Dummy Text
 
+Generate some dummy text:
 `<p data-dummy></p>`
 
 Choose the amount of words:
@@ -31,6 +32,7 @@ Choose a random amount of words between 3 and 10:
 
 ## Dummy Images
 
+Add a dummy placeholder image
 `<img data-dummy="400x300" />`
 
 Defaults to the size of the parent container
@@ -61,11 +63,11 @@ Duplicate elements into other areas of your webpage. Pass a CSS selector like `.
 
 `<div data-copy=".pagination"></div>`
 
-## More Docs and Examples at:
+## More Docs and Examples are available at:
 
 https://dummyjs.com/
 
-### Use with jQuery and Frameworks
+### Usage with jQuery and other Frameworks
 Vanilla Javascript:
 ```JS
 Dummy.text('30,30')
