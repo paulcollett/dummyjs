@@ -77,7 +77,9 @@ const updateDom = function() {
 };
 
 if(document && document.addEventListener) {
-  document.addEventListener('DOMContentLoaded', updateDom);
+  if(window.dummy_auto !== false) {
+    document.addEventListener('DOMContentLoaded', updateDom);
+  }
 
   Dummy.updateDom = updateDom;
 }
