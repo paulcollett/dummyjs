@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>DummyJs &ndash; Dummy text and Placeholder Images for Bootstrap</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+
+  <meta name="description" content="Bootstrap script for dummy text, placeholder images and repeatable elements for rapid prototyping" />
+  <link rel="canonical" href="https://dummyjs.com/docs/bootstrap.html" />
+  <link rel="icon" type="image/png" href="../website-assets/favicon.png">
+</head>
+<body>
+
+<nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+  <a href="../" class="btn btn-bd-yellow d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3">&larr; Back to Dummy Js</a>
+
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item" data-repeat="3">
+      <a class="nav-link" href="#" data-dummy="1,2">Test </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">DummyJs &amp; Bootstrap</h1>
+    <p class="lead">DummyJs shines when working with UI toolkits like Bootstrap</p>
+    <hr class="my-4">
+    <p>Now you can test Bootstraps UI components and create interfaces and features quicker and more reliably with the help of DummyJs's nifty suite of tools.</p>
+    <p class="lead">
+        😃 Dummy Text 😁 Placeholder Images 😆 Repeatable Elements 😍 More
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Text and Tables</h1>
+  <p class="lead">Just add <code>data-dummy</code> to any tag for instant content</p>
+  <p data-dummy></p>
+  <table class="table" data-dummy></table>
+  <div class="highlight">
+    <pre>
+      <code>
+      &lt;p data-dummy>&lt;/p>
+      &lt;table class="table" data-dummy>&lt;/table>
+      </code>
+    </pre>
+  </div>
+</div>
+
+<div class="container">
+  <h5>Alert!</h5>
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading" data-dummy></h4>
+    <p class="mb-0" data-dummy></p>
+  </div>
+</div>
+
+<hr />
+
+<div class="container">
+  <h1>Images</h1>
+  <p class="lead">Just add <code>data-dummy</code> to any image tag for instant placeholder images. Need to specify a size? <code>data-dummy="80"</code> or <code>data-dummy="100x300"</code></p>
+  <div class="media">
+    <img class="d-flex mr-3" data-dummy="80">
+    <div class="media-body">
+      <h5 class="mt-0" data-dummy="2,4"></h5>
+      <div data-dummy="30,50"></div>
+    </div>
+  </div>
+  <div class="highlight">
+    <pre data-code=".media"></pre>
+  </div>
+</div>
+
+<hr />
+
+<!--
+<div class="container">
+  <div class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-repeat="3">
+        <img data-dummy class="d-block w-100">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#" data-slide="prev"><span class="carousel-control-prev-icon"></span></a>
+    <a class="carousel-control-next" href="#" data-slide="next"><span class="carousel-control-next-icon"></span></a>
+  </div>
+</div>
+-->
+
+<div class="container">
+  <h1>Copy Elements</h1>
+  <p class="lead">Copy existing elements on your page by just adding <code>&lt;div data-copy=".css-selector">&lt;/div></code></p>
+  <p>Copying elements saves you from recoding any tweaks across resued elements. It also helps you organize reused templates, see what we mean by viewing the page source to see how we do it.</p>
+</div>
+
+<div class="container">
+  <h1>Repeat Elements</h1>
+  <p class="lead">Repeating elements is simple. Just add <code>data-repeat="3"</code> to any tag</p>
+  <p>See copying and repeat in action below&hellip;</p>
+</div>
+
+<template class="tmpl-pag">
+  <nav class="text-right">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item" data-repeat="3"><a class="page-link" href="#">n</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+</template>
+
+<template class="tmpl-product">
+  <div class="card" style="width: 250px; margin-bottom:40px">
+    <img class="card-img-top" data-dummy>
+    <div class="card-body">
+      <h4 class="card-title" data-dummy="1,3"></h4>
+      <p class="card-text" data-dummy="20,40"></p>
+    </div>
+  </div>
+</template>
+
+<div class="container repeat-example">
+  <div class="row">
+    <div data-copy=".tmpl-pag"></div>
+  </div>
+  <div class="row">
+    <div class="col" data-repeat="6,12">
+      <div data-copy=".tmpl-product"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div data-copy=".tmpl-pag"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="highlight">
+    <h5>In the above we added our elements to <code>&lt;template></code> tags&hellip;</h5>
+    <pre data-code=".tmpl-pag"></pre>
+    <pre data-code=".tmpl-product"></pre>
+    <h5>&hellip;And them copied them into our layout, which also uses <code>data-repeat</code></h5>
+    <pre data-code=".repeat-example"></pre>
+    <h5>In such a few lines of code we've built a full product layout</h5>
+  </div>
+</div>
+
+
+<div class="container" style="margin-bottom: 80px;padding-top: 40px">
+  <h5>More Dummy Js</h5>
+  <p class="lead">Thats just a quick showcase of the power DummyJs can bring to your Bootstrap layouting process.</p>
+  <p>For usage and configuration options please visit the DummyJs page.</p>
+  <a href="../" class="btn btn-large btn-warning">More Docs and Examples</a>
+</div>
+
+
+<script>
+(function(){
+  var els = Array.from(document.querySelectorAll('[data-code]'));
+  els.forEach(function(el) {
+    el.innerHTML = document.querySelector(el.getAttribute('data-code')).outerHTML.replace(/</g,'&lt;');
+  });
+})();
+</script>
+
+<script src="../dummy.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-1873955-6', 'auto');
+  //ga('send', 'pageview');
+</script>
+</body>
+</html>
