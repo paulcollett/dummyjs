@@ -6,7 +6,8 @@
 
 Dummy.js is a simple drop-in script that makes it easy to fill your HTML with dummy text and images for development.
 
-_Latest documentation and examples are available at:_
+
+_Latest documentation and examples can be found at:_
 ### https://dummyjs.com/
 
 
@@ -14,54 +15,84 @@ _Latest documentation and examples are available at:_
 
 Add the script tag to your HTML page:
 
-`<script src="https://dummyjs.com/dummy.js"></script>`
+```HTML
+<script src="https://dummyjs.com/dummy.js"></script>
+```
+
+or, for short:
+```HTML
+<script src="//dummyjs.com/js"></script>
+```
 
 ## Dummy Text
 
-Generate some dummy text:
-`<p data-dummy></p>`
+```HTML
+<p data-dummy></p>
+```
 
 Choose the amount of words:
-`<p data-dummy="150"></p>`
+```HTML
+<p data-dummy="150"></p>
+```
 
 Render dummy markup for `ol` `ul` `table`:
-`<table data-dummy></table>`
+```HTML
+<table data-dummy></table>
+```
 
 Choose a random amount of words between 3 and 10:
-`<p data-dummy="3,10"></p>`
+```HTML
+<p data-dummy="3,10"></p>
+```
 
 ## Dummy Images
 
-Add a dummy placeholder image
-`<img data-dummy="400x300" />`
+
+```HTML
+<img data-dummy="400x300" />
+```
 
 Defaults to the size of the parent container
-`<img data-dummy />`
+```HTML
+<img data-dummy />
+```
 
 Custom Text
-`<img data-dummy="400x300" data-text="person" />`
+```HTML
+<img data-dummy="400x300" data-text="person" />
+```
 
 Custom Colors
-`<img data-dummy="400x300" data-color="#0000ff" data-text-color="#fff" />`
+```HTML
+<img data-dummy="400x300" data-color="#0000ff" data-text-color="#fff" />
+```
 
 ## Repeat Elements
 
-`<div data-repeat="3">Team Member</div>`
+```HTML
+<div data-repeat="3">Team Member</div>
+```
 
-Repeat random amount of times between 3 and 10:
-`<p data-repeat="3,10"></p>`
+Repeat a random amount of times between 3 and 10:
+```HTML
+<p data-repeat="3,10"></p>
+```
 
 ## Kitchen Sink
 
-Output all the common tags incl. headings, paragraphs, etc. Great for base styling.
+Output all the common tags including headings, paragraphs, etc. Great for base styling.
 
-`<div data-dummy="sink"></div>`
+```HTML
+<div data-dummy="sink"></div>
+```
 
 ## Copy Elements
 
 Duplicate elements into other areas of your webpage. Pass a CSS selector like `.myelement` or `.post h3`
 
-`<div data-copy=".pagination"></div>`
+```HTML
+<div data-copy=".pagination"></div>
+```
 
 ## More Docs and Examples are available at:
 
