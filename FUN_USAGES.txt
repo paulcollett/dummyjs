@@ -1,0 +1,28 @@
+/*
+ *
+ * To other people the reasons behind using Dummy text and images
+ * can sometimes be a little on the boring side.
+ *
+ * To change this lets see how fun placeholder content could be
+ * through crazy senarios.
+ *
+ * Add your out-there idea below and we'll list it on our home page
+ * at dummyjs.com along with a link to your github
+ *
+ * Rules:
+ * - A new phrase per line
+ * - 3 words max (+ joining words like "in" "with" are ok)
+ * - Add your GitHub username prefixed with at @symbol (optional)
+ *
+ * [Phrase] @[GitHub Name]
+ *
+ * Adding Yours, visit:
+ * https://github.com/paulcollett/dummyjs/edit/master/FUN_USAGES.txt
+ *
+*/
+
+Gallery Theft Replacement
+Whitehouse Password Generator @paulcollett
+President Speech Script @paulcollett
+Backup Playboy Centerfold @paulcollett
+Assisted Wife Conversation
