@@ -6,13 +6,13 @@
 
 Dummy.js is a simple drop-in script that provides tools to help you build your front-end HTML & CSS.
 
-_Latest documentation and examples at:_
+_Latest documentation and examples can be found at:_
 ### https://dummyjs.com/
 
 
 ## Usage
 
-Add to your HTML page:
+Add this to your HTML page:
 
 ```HTML
 <script src="https://dummyjs.com/dummy.js"></script>
@@ -78,7 +78,7 @@ Repeat random amount of times between 3 and 10:
 
 ## Kitchen Sink
 
-Output all the common tags incl. headings, paragraphs, etc. Great for base styling.
+Output all the common tags including headings, paragraphs, etc. Great for base styling.
 
 ```HTML
 <div data-dummy="sink"></div>
