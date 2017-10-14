@@ -160,7 +160,7 @@
 
 <script>
 (function(){
-  var els = Array.from(document.querySelectorAll('[data-code]'));
+  var els = Array.prototype.slice.call(document.querySelectorAll('[data-code]'));
   els.forEach(function(el) {
     el.innerHTML = document.querySelector(el.getAttribute('data-code')).outerHTML.replace(/</g,'&lt;');
   });

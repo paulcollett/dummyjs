@@ -93,7 +93,7 @@ var updateDom = function() {
       var elToCopy = document.querySelector(selector) || document.getElementById(selector) || document.getElementsByClassName(selector)[0];
 
       if(!elToCopy) {
-        elToCopy = {outerHTML: 'data-copy="' + selector + '" element not found'};
+        elToCopy = {outerHTML: ("data-copy=\"" + selector + "\" element not found")};
       }
 
       el.outerHTML = (elToCopy.tagName == 'SCRIPT' || elToCopy.tagName == 'TEMPLATE') ? elToCopy.innerHTML : elToCopy.outerHTML;
