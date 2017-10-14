@@ -71,7 +71,7 @@ Custom Colors
 <div data-repeat="3">Team Member</div>
 ```
 
-Repeat random amount of times between 3 and 10:
+Repeat a random amount of times between 3 and 10:
 ```HTML
 <p data-repeat="3,10"></p>
 ```
