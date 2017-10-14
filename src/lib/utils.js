@@ -14,4 +14,9 @@ const repeat = (str, count) => {
   })(str + '', Math.floor(count), '');
 };
 
-export default {rand, repeat}
+// array.from polyfill (!IE)
+const arr = nodelist => {
+  return Array.from ? Array.from(nodelist) : Array.prototype.slice.call(nodelist);
+}
+
+export default {rand, repeat, arr}

@@ -25,7 +25,12 @@ var repeat = function (str, count) {
   })(str + '', Math.floor(count), '');
 };
 
-var Utils = {rand: rand, repeat: repeat};
+// array.from polyfill (!IE)
+var arr = function (nodelist) {
+  return Array.from ? Array.from(nodelist) : Array.prototype.slice.call(nodelist);
+};
+
+var Utils = {rand: rand, repeat: repeat, arr: arr};
 
 var text = function (argString) {
   var wordCount = (argString + '').split(',');
@@ -81,7 +86,7 @@ var Dummy$1 = {
 
 var updateDom = function() {
   // copy element support
-  for (var i = 0; i < 3; i++) { Array.from(document.querySelectorAll('[data-copy]'))
+  for (var i = 0; i < 3; i++) { Utils.arr(document.querySelectorAll('[data-copy]'))
     .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? 1 : -1; }) // inner first then parents
     .forEach(function (el) {
       var selector = el.getAttribute('data-copy');
@@ -122,7 +127,7 @@ var updateDom = function() {
   });
 
   // repeater support
-  Array.from(document.querySelectorAll('[data-repeat]'))
+  Utils.arr(document.querySelectorAll('[data-repeat]'))
     .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? -1 : 1; })
     .forEach(function (el) {
       var amount = el.getAttribute('data-repeat');
@@ -136,7 +141,7 @@ var updateDom = function() {
     el.removeAttribute('data-dummy');
   });
 
-  var dummyTextEls = Array.from(document.querySelectorAll('[data-dummy]'));
+  var dummyTextEls = Utils.arr(document.querySelectorAll('[data-dummy]'));
 
   // prevent page translation to latin containing majority dummy text
   var meta = document.createElement('meta');

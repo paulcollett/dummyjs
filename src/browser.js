@@ -3,7 +3,7 @@ import Utils from './lib/utils.js'
 
 const updateDom = function() {
   // copy element support
-  for (let i = 0; i < 3; i++) Array.from(document.querySelectorAll('[data-copy]'))
+  for (let i = 0; i < 3; i++) Utils.arr(document.querySelectorAll('[data-copy]'))
     .sort((a, b) => a.compareDocumentPosition(b) & 2 ? 1 : -1) // inner first then parents
     .forEach(el => {
       const selector = el.getAttribute('data-copy');
@@ -45,7 +45,7 @@ const updateDom = function() {
   });
 
   // repeater support
-  Array.from(document.querySelectorAll('[data-repeat]'))
+  Utils.arr(document.querySelectorAll('[data-repeat]'))
     .sort((a, b) => a.compareDocumentPosition(b) & 2 ? -1 : 1)
     .forEach(el => {
       const amount = el.getAttribute('data-repeat');
@@ -59,7 +59,7 @@ const updateDom = function() {
     el.removeAttribute('data-dummy');
   });
 
-  const dummyTextEls = Array.from(document.querySelectorAll('[data-dummy]'));
+  const dummyTextEls = Utils.arr(document.querySelectorAll('[data-dummy]'));
 
   // prevent page translation to latin containing majority dummy text
   let meta = document.createElement('meta');
