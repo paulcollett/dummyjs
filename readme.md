@@ -6,13 +6,13 @@
 
 Dummy.js is a simple drop-in script that provides tools to help you build your front-end HTML & CSS.
 
-_Latest documentation and examples at:_
+_Latest documentation and examples can be found at:_
 ### https://dummyjs.com/
 
 
 ## Usage
 
-Add to your HTML page:
+Add this to your HTML page:
 
 `<script src="https://dummyjs.com/dummy.js"></script>`
 
@@ -33,7 +33,7 @@ Choose a random amount of words between 3 and 10:
 
 `<img data-dummy="400x300" />`
 
-Defaults to the size of the parent container
+Default to the size of the parent container
 `<img data-dummy />`
 
 Custom Text
@@ -46,12 +46,12 @@ Custom Colors
 
 `<div data-repeat="3">Team Member</div>`
 
-Repeat random amount of times between 3 and 10:
+Repeat a random amount of times between 3 and 10:
 `<p data-repeat="3,10"></p>`
 
 ## Kitchen Sink
 
-Output all the common tags incl. headings, paragraphs, etc. Great for base styling.
+Output all the common tags including headings, paragraphs, etc. Great for base styling.
 
 `<div data-dummy="sink"></div>`
 
