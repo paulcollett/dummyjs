@@ -1,24 +1,22 @@
-/*
- *
- * To other people the reasons behind using Dummy text and images
+/* To other people the reasons behind using Dummy text and images
  * can sometimes be a little on the boring side.
  *
  * To change this lets see how fun placeholder content could be
  * through crazy senarios.
  *
  * Add your out-there idea below and we'll list it on our home page
- * at dummyjs.com along with a link to your github
+ * at https://dummyjs.com/ along with a link to your github
  *
  * Rules:
  * - A new phrase per line
  * - 3 words max (+ joining words like "in" "with" are ok)
  * - Add your GitHub username prefixed with at @symbol (optional)
+ * - Add as many as you like
  *
  * [Phrase] @[GitHub Name]
  *
- * Adding Yours, visit:
+ * Add yours by visiting:
  * https://github.com/paulcollett/dummyjs/edit/master/FUN_USAGES.txt
- *
 */
 
 Gallery Theft Replacement
