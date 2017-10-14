@@ -474,5 +474,19 @@
   ga('create', 'UA-1873955-6', 'auto');
   ga('send', 'pageview');
 </script>
+
+<script src="//cdn.jsdelivr.net/npm/prismjs" data-manual></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/prismjs/themes/prism.css" />
+<script>
+(function(){
+  if(!Array.from || !window.Prism) return; // !IE
+  var els = Array.from(document.querySelectorAll('.code-block'));
+  els.forEach(function(el) {
+    var code = el.innerHTML.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/<\/?strong>/g,'');
+    el.innerHTML = Prism.highlight(code, Prism.languages.markup);
+  });
+})();
+</script>
+
 </body>
 </html>
