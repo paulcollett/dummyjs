@@ -23,8 +23,11 @@ var arr = function (nodelist) {
 
 var Utils = {rand: rand, repeat: repeat, arr: arr};
 
-var text = function (argString) {
-  var wordCount = (argString + '').split(',');
+var text = function () {
+  var args = [], len = arguments.length;
+  while ( len-- ) args[ len ] = arguments[ len ];
+
+  var wordCount = args.join(',').split(','); // allow for mixed argument input ie. ('20,30') or (20, 30)
   wordCount = Utils.rand(wordCount[0], wordCount[1]) || 10;
 
   var lib = 'lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel ' +
@@ -40,24 +43,31 @@ var text = function (argString) {
   return lib.charAt(0).toUpperCase() + lib.slice(1);
 };
 
-var src = function (argString, el) {
-  var size = '404';
+var src = function () {
+  var args = [], len = arguments.length;
+  while ( len-- ) args[ len ] = arguments[ len ];
 
-  if(argString) {
-    size = argString;
-  } else if(el) {
+  // allow for mixed argument input ie. (200, 200, el) ('200x200', el), ('200')
+  var el = args[args.length - 1] instanceof HTMLImageElement ? args.pop() : null;
+  var size = args.splice(0, 2).join('x');
+
+  if(!size && el) {
     size = [parseInt(el.getAttribute('width') || el.offsetWidth), parseInt(el.getAttribute('height') || el.offsetHeight)].filter(function (v) {return !!v}).join('x');
-    size =  size || (el.parentNode && el.parentNode.offsetWidth) || '404';
+    size =  size || (el.parentNode && el.parentNode.offsetWidth);
   }
 
   // split size to allow for random ranges
-  size = (size + '').split('x').map(function (a){ return Utils.rand(a.split(',')[0], a.split(',')[1]); });
+  size = (size + '' || '404').split('x').map(function (a){ return Utils.rand(a.split(',')[0] || '404', a.split(',')[1]); });
 
   var w = size[0];
-  var h = (size[1]||size[0]);
-  var text = (el && el.getAttribute('data-text') || (w + '×' + h));
-  var bgColor = (el && el.getAttribute('data-color') || '#ccc');
-  var textColor = (el && el.getAttribute('data-text-color') || '#888');
+  var h = size[1] || size[0];
+
+  // Getting a little messy, but idea is to test next argument to see if it isn't a color (not #..) then remove it from the arguements list and return. Otherwise fallback..
+  var text = args[0] && /^\w{2,}/.test(args[0]) ? args.splice(0, 1).pop() : ( el && el.getAttribute('data-text') || (w + '×' + h) );
+  var bgColor = (el && el.getAttribute('data-color') || args[0] || '#ccc');
+  var textColor = (el && el.getAttribute('data-text-color') || args[1] || '#888');
+
+  // Better logic out there?
   var fontSize = (w / 3.5 / (text.length * 0.3)) - text.length;
 
   return 'data:image/svg+xml,'

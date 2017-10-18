@@ -1,5 +1,5 @@
 /*!
- * DummyJS v1.0.1
+ * DummyJS v1.0.2
  * http://dummyjs.com/
  */
 
@@ -32,8 +32,11 @@ var arr = function (nodelist) {
 
 var Utils = {rand: rand, repeat: repeat, arr: arr};
 
-var text = function (argString) {
-  var wordCount = (argString + '').split(',');
+var text = function () {
+  var args = [], len = arguments.length;
+  while ( len-- ) args[ len ] = arguments[ len ];
+
+  var wordCount = args.join(',').split(','); // allow for mixed argument input ie. ('20,30') or (20, 30)
   wordCount = Utils.rand(wordCount[0], wordCount[1]) || 10;
 
   var lib = 'lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel ' +
@@ -49,24 +52,31 @@ var text = function (argString) {
   return lib.charAt(0).toUpperCase() + lib.slice(1);
 };
 
-var src = function (argString, el) {
-  var size = '404';
+var src = function () {
+  var args = [], len = arguments.length;
+  while ( len-- ) args[ len ] = arguments[ len ];
 
-  if(argString) {
-    size = argString;
-  } else if(el) {
+  // allow for mixed argument input ie. (200, 200, el) ('200x200', el), ('200')
+  var el = args[args.length - 1] instanceof HTMLImageElement ? args.pop() : null;
+  var size = args.splice(0, 2).join('x');
+
+  if(!size && el) {
     size = [parseInt(el.getAttribute('width') || el.offsetWidth), parseInt(el.getAttribute('height') || el.offsetHeight)].filter(function (v) {return !!v}).join('x');
-    size =  size || (el.parentNode && el.parentNode.offsetWidth) || '404';
+    size =  size || (el.parentNode && el.parentNode.offsetWidth);
   }
 
   // split size to allow for random ranges
-  size = (size + '').split('x').map(function (a){ return Utils.rand(a.split(',')[0], a.split(',')[1]); });
+  size = (size + '' || '404').split('x').map(function (a){ return Utils.rand(a.split(',')[0] || '404', a.split(',')[1]); });
 
   var w = size[0];
-  var h = (size[1]||size[0]);
-  var text = (el && el.getAttribute('data-text') || (w + '×' + h));
-  var bgColor = (el && el.getAttribute('data-color') || '#ccc');
-  var textColor = (el && el.getAttribute('data-text-color') || '#888');
+  var h = size[1] || size[0];
+
+  // Getting a little messy, but idea is to test next argument to see if it isn't a color (not #..) then remove it from the arguements list and return. Otherwise fallback..
+  var text = args[0] && /^\w{2,}/.test(args[0]) ? args.splice(0, 1).pop() : ( el && el.getAttribute('data-text') || (w + '×' + h) );
+  var bgColor = (el && el.getAttribute('data-color') || args[0] || '#ccc');
+  var textColor = (el && el.getAttribute('data-text-color') || args[1] || '#888');
+
+  // Better logic out there?
   var fontSize = (w / 3.5 / (text.length * 0.3)) - text.length;
 
   return 'data:image/svg+xml,'
@@ -96,7 +106,7 @@ var updateDom = function() {
         elToCopy = {outerHTML: ("data-copy=\"" + selector + "\" element not found")};
       }
 
-      el.outerHTML = (elToCopy.tagName == 'SCRIPT' || elToCopy.tagName == 'TEMPLATE') ? elToCopy.innerHTML : elToCopy.outerHTML;
+      el.outerHTML = elToCopy[elToCopy.tagName == 'SCRIPT' || elToCopy.tagName == 'TEMPLATE' ? 'innerHTML' : 'outerHTML'];
   }); }
 
   // kitchen sink
@@ -119,11 +129,18 @@ var updateDom = function() {
     el.innerHTML += Utils.repeat('<li data-dummy></li>', 4);
   });
 
+  // select support
+  document.querySelectorAll('select[data-dummy]').forEach(function (el) {
+    el.removeAttribute('data-dummy');
+
+    el.innerHTML += Utils.repeat('<option data-dummy=2,3></option>', 4);
+  });
+
   // table support
   document.querySelectorAll('table[data-dummy]').forEach(function (el) {
     el.removeAttribute('data-dummy');
 
-    el.innerHTML = "<thead><tr><th data-dummy=2 data-repeat=3><th></tr></thead>\n      <tbody><tr data-repeat=3><td data-dummy=4 data-repeat=3></td></tr></tbody>";
+    el.innerHTML = "<thead><tr><th data-dummy=2 data-repeat=3></th></tr></thead>\n      <tbody><tr data-repeat=3><td data-dummy=4 data-repeat=3></td></tr></tbody>";
   });
 
   // repeater support
@@ -143,23 +160,36 @@ var updateDom = function() {
 
   var dummyTextEls = Utils.arr(document.querySelectorAll('[data-dummy]'));
 
-  // prevent page translation to latin containing majority dummy text
+  // prevent chromes latin translation prompt for pages with majority dummy text
   var meta = document.createElement('meta');
   meta.name = 'google';
   meta.content = 'notranslate';
   dummyTextEls.length && document.querySelector('head').appendChild(meta);
 
-  // text support
+  // text support (works with inputs as well)
   dummyTextEls
-    .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? -1 : 1; })
+    .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? -1 : 1; }) // needed?
     .forEach(function (el) {
-      el.innerHTML += Dummy$1.text(el.getAttribute('data-dummy'));
+      el[el.tagName === 'INPUT' ? 'value' : 'innerHTML'] += Dummy$1.text(el.getAttribute('data-dummy'));
     });
 
+  // some props support
+  var props = 'placeholder,title'.split(',');
+  props.forEach(function (prop) { return document.querySelectorAll(("[data-dummy\\:" + prop + "]")).forEach(function (el) {
+    el[prop] = Dummy$1.text(el.getAttribute(("data-dummy:" + prop)));
+  }); });
+
+  // tag support for text <dummy text="23"></dummy> & <dummy 23></dummy>
+  document.querySelectorAll('dummy').forEach(function (el) {
+    el.outerHTML = Dummy$1.text(el.attributes[0]
+      ? el.attributes[0].value || (parseInt(el.attributes[0].name) ? el.attributes[0].name : '')
+      : '');
+  });
 };
 
 if(document && document.addEventListener) {
   if(window.dummy_auto !== false) {
+    document.createElement('dummy');
     document.addEventListener('DOMContentLoaded', updateDom);
   }
 
@@ -167,11 +197,13 @@ if(document && document.addEventListener) {
 }
 
 if(window && window.jQuery) {
-  window.jQuery.fn.dummy = function(args) {
+  window.jQuery.fn.dummy = function() {
+    var args = [].slice.call(arguments);
+
     window.jQuery(this).each(function() {
       this.nodeName.toLowerCase() === 'img'
-        ? this.src = Dummy$1.src(args, this)
-        : this.innerHTML = Dummy$1.text(args);
+        ? this.src = Dummy$1.src.apply(null, args.concat(this))
+        : this.innerHTML = Dummy$1.text.apply(null, args);
     });
   };
 }

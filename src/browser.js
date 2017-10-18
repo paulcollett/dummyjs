@@ -13,7 +13,7 @@ const updateDom = function() {
         elToCopy = {outerHTML: `data-copy="${selector}" element not found`};
       }
 
-      el.outerHTML = (elToCopy.tagName == 'SCRIPT' || elToCopy.tagName == 'TEMPLATE') ? elToCopy.innerHTML : elToCopy.outerHTML;
+      el.outerHTML = elToCopy[elToCopy.tagName == 'SCRIPT' || elToCopy.tagName == 'TEMPLATE' ? 'innerHTML' : 'outerHTML'];
   });
 
   // kitchen sink
@@ -36,11 +36,18 @@ const updateDom = function() {
     el.innerHTML += Utils.repeat('<li data-dummy></li>', 4);
   });
 
+  // select support
+  document.querySelectorAll('select[data-dummy]').forEach(el => {
+    el.removeAttribute('data-dummy');
+
+    el.innerHTML += Utils.repeat('<option data-dummy=2,3></option>', 4);
+  });
+
   // table support
   document.querySelectorAll('table[data-dummy]').forEach(el => {
     el.removeAttribute('data-dummy');
 
-    el.innerHTML = `<thead><tr><th data-dummy=2 data-repeat=3><th></tr></thead>
+    el.innerHTML = `<thead><tr><th data-dummy=2 data-repeat=3></th></tr></thead>
       <tbody><tr data-repeat=3><td data-dummy=4 data-repeat=3></td></tr></tbody>`;
   });
 
@@ -61,23 +68,36 @@ const updateDom = function() {
 
   const dummyTextEls = Utils.arr(document.querySelectorAll('[data-dummy]'));
 
-  // prevent page translation to latin containing majority dummy text
+  // prevent chromes latin translation prompt for pages with majority dummy text
   let meta = document.createElement('meta');
   meta.name = 'google';
   meta.content = 'notranslate';
   dummyTextEls.length && document.querySelector('head').appendChild(meta);
 
-  // text support
+  // text support (works with inputs as well)
   dummyTextEls
-    .sort((a, b) => a.compareDocumentPosition(b) & 2 ? -1 : 1)
+    .sort((a, b) => a.compareDocumentPosition(b) & 2 ? -1 : 1) // needed?
     .forEach(el => {
-      el.innerHTML += Dummy.text(el.getAttribute('data-dummy'));
+      el[el.tagName === 'INPUT' ? 'value' : 'innerHTML'] += Dummy.text(el.getAttribute('data-dummy'));
     });
 
+  // some props support
+  const props = 'placeholder,title'.split(',');
+  props.forEach(prop => document.querySelectorAll(`[data-dummy\\:${prop}]`).forEach(el => {
+    el[prop] = Dummy.text(el.getAttribute(`data-dummy:${prop}`));
+  }));
+
+  // tag support for text <dummy text="23"></dummy> & <dummy 23></dummy>
+  document.querySelectorAll('dummy').forEach(el => {
+    el.outerHTML = Dummy.text(el.attributes[0]
+      ? el.attributes[0].value || (parseInt(el.attributes[0].name) ? el.attributes[0].name : '')
+      : '');
+  });
 };
 
 if(document && document.addEventListener) {
   if(window.dummy_auto !== false) {
+    document.createElement('dummy');
     document.addEventListener('DOMContentLoaded', updateDom);
   }
 
@@ -85,11 +105,13 @@ if(document && document.addEventListener) {
 }
 
 if(window && window.jQuery) {
-  window.jQuery.fn.dummy = function(args) {
+  window.jQuery.fn.dummy = function() {
+    const args = [].slice.call(arguments);
+
     window.jQuery(this).each(function() {
       this.nodeName.toLowerCase() === 'img'
-        ? this.src = Dummy.src(args, this)
-        : this.innerHTML = Dummy.text(args);
+        ? this.src = Dummy.src.apply(null, args.concat(this))
+        : this.innerHTML = Dummy.text.apply(null, args);
     });
   }
 }
