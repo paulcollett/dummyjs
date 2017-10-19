@@ -60,7 +60,7 @@ var src = function () {
   var w = size[0];
   var h = size[1] || size[0];
 
-  // Getting a little messy, but idea is to test next argument to see if it isn't a color (not #..) then remove it from the arguements list and return. Otherwise fallback..
+  // Getting a little messy, but idea is to test next argument to see if it isn't a color (not #..) then remove it from the arguments list and return. Otherwise fallback..
   var text = args[0] && /^\w{2,}/.test(args[0]) ? args.splice(0, 1).pop() : ( el && el.getAttribute('data-text') || (w + '×' + h) );
   var bgColor = (el && el.getAttribute('data-color') || args[0] || '#ccc');
   var textColor = (el && el.getAttribute('data-text-color') || args[1] || '#888');

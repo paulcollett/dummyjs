@@ -71,7 +71,7 @@ var src = function () {
   var w = size[0];
   var h = size[1] || size[0];
 
-  // Getting a little messy, but idea is to test next argument to see if it isn't a color (not #..) then remove it from the arguements list and return. Otherwise fallback..
+  // Getting a little messy, but idea is to test next argument to see if it isn't a color (not #..) then remove it from the arguments list and return. Otherwise fallback..
   var text = args[0] && /^\w{2,}/.test(args[0]) ? args.splice(0, 1).pop() : ( el && el.getAttribute('data-text') || (w + '×' + h) );
   var bgColor = (el && el.getAttribute('data-color') || args[0] || '#ccc');
   var textColor = (el && el.getAttribute('data-text-color') || args[1] || '#888');
@@ -94,71 +94,105 @@ var Dummy$1 = {
   src: src
 };
 
-var updateDom = function() {
-  // copy element support
-  for (var i = 0; i < 3; i++) { Utils.arr(document.querySelectorAll('[data-copy]'))
-    .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? 1 : -1; }) // inner first then parents
-    .forEach(function (el) {
-      var selector = el.getAttribute('data-copy');
-      var elToCopy = document.querySelector(selector) || document.getElementById(selector) || document.getElementsByClassName(selector)[0];
+var parseDom = (function () {
+  var parseOrder = [];
+  var parsers = {};
 
-      if(!elToCopy) {
-        elToCopy = {outerHTML: ("data-copy=\"" + selector + "\" element not found")};
-      }
+  return {
+    parsers: parsers,
+    add: function(name, fn) {
+      parsers[name] = fn;
+      parseOrder.push(name);
+    },
+    all: function(opts) {
+      if ( opts === void 0 ) opts = {};
 
-      el.outerHTML = elToCopy[elToCopy.tagName == 'SCRIPT' || elToCopy.tagName == 'TEMPLATE' ? 'innerHTML' : 'outerHTML'];
+      parseOrder.forEach(function (name) { return parsers[name](); });
+    }
+  };
+})();
+
+parseDom.add('copy', function (attr) {
+  if ( attr === void 0 ) attr = 'data-copy';
+
+  for (var i = 0; i < 3; i++) { Utils.arr(document.querySelectorAll(("[" + attr + "]")))
+  .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? 1 : -1; }) // inner first then parents
+  .forEach(function (el) {
+    var selector = el.getAttribute(attr);
+    var elToCopy = document.querySelector(selector) || document.getElementById(selector) || document.getElementsByClassName(selector)[0];
+
+    if(!elToCopy) {
+      elToCopy = {outerHTML: (attr + "=\"" + selector + "\" element not found")};
+    }
+
+    el.outerHTML = elToCopy[elToCopy.tagName == 'SCRIPT' || elToCopy.tagName == 'TEMPLATE' ? 'innerHTML' : 'outerHTML'];
   }); }
+});
+
+parseDom.add('shorthand', function (textAttr, repeatAttr) {
+  if ( textAttr === void 0 ) textAttr = 'data-dummy';
+  if ( repeatAttr === void 0 ) repeatAttr = 'repeatAttr';
 
   // kitchen sink
-  document.querySelectorAll('[data-dummy=sink]').forEach(function (el) {
-    el.removeAttribute('data-dummy');
+  document.querySelectorAll(("[" + textAttr + "=sink]")).forEach(function (el) {
+    el.removeAttribute(textAttr);
 
     var tags = 'h1,h2,h3,h4,h5,ul,ol,table,blockquote'.split(',').join(',p,').split(',');
 
-    tags = tags.map(function (tag) { return ("<" + tag + " data-dummy></" + tag + ">"); }).join('')
-      + '<hr /><p data-dummy="150">This <strong>is a longer</strong> <em>paragraph</em> <a href="#">with a link</a>. </p>'
-      + '<img data-dummy="800" /><p data-dummy="70" data-repeat=4></p>';
+    tags = tags.map(function (tag) { return ("<" + tag + " " + textAttr + "></" + tag + ">"); }).join('')
+      + "<hr /><p " + textAttr + "=\"150\">This <strong>is a longer</strong> <em>paragraph</em> <a href=\"#\">with a link</a>. </p>"
+      + "<img " + textAttr + "=\"800\" /><p " + textAttr + "=\"70\" " + repeatAttr + "=4></p>";
 
     el.innerHTML += tags;
   });
 
   // list support
-  document.querySelectorAll('ul[data-dummy], ol[data-dummy]').forEach(function (el) {
-    el.removeAttribute('data-dummy');
+  document.querySelectorAll(("ul[" + textAttr + "], ol[" + textAttr + "]")).forEach(function (el) {
+    el.removeAttribute(textAttr);
 
-    el.innerHTML += Utils.repeat('<li data-dummy></li>', 4);
+    el.innerHTML += Utils.repeat(("<li " + textAttr + "></li>"), 4);
   });
 
   // select support
-  document.querySelectorAll('select[data-dummy]').forEach(function (el) {
-    el.removeAttribute('data-dummy');
+  document.querySelectorAll(("select[" + textAttr + "]")).forEach(function (el) {
+    el.removeAttribute(textAttr);
 
-    el.innerHTML += Utils.repeat('<option data-dummy=2,3></option>', 4);
+    el.innerHTML += Utils.repeat(("<option " + textAttr + "=2,3></option>"), 4);
   });
 
   // table support
-  document.querySelectorAll('table[data-dummy]').forEach(function (el) {
-    el.removeAttribute('data-dummy');
+  document.querySelectorAll(("table[" + textAttr + "]")).forEach(function (el) {
+    el.removeAttribute(textAttr);
 
-    el.innerHTML = "<thead><tr><th data-dummy=2 data-repeat=3></th></tr></thead>\n      <tbody><tr data-repeat=3><td data-dummy=4 data-repeat=3></td></tr></tbody>";
+    el.innerHTML = "<thead><tr><th " + textAttr + "=2 " + repeatAttr + "=3></th></tr></thead>\n      <tbody><tr " + repeatAttr + "=3><td " + textAttr + "=4 " + repeatAttr + "=3></td></tr></tbody>";
   });
+});
 
-  // repeater support
-  Utils.arr(document.querySelectorAll('[data-repeat]'))
-    .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? -1 : 1; })
-    .forEach(function (el) {
-      var amount = el.getAttribute('data-repeat');
-      el.outerHTML = Utils.repeat(el.outerHTML, Utils.rand(amount.split(',')[0], amount.split(',')[1]) || 4);
-    });
+parseDom.add('repeat', function (attr) {
+  if ( attr === void 0 ) attr = 'data-repeat';
 
-  // image support
-  document.querySelectorAll('img[data-dummy]').forEach(function (el) {
-    el.src = Dummy$1.src(el.getAttribute('data-dummy'), el);
-
-    el.removeAttribute('data-dummy');
+  Utils.arr(document.querySelectorAll(("[" + attr + "]")))
+  .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? -1 : 1; })
+  .forEach(function (el) {
+    var amount = el.getAttribute(attr);
+    el.outerHTML = Utils.repeat(el.outerHTML.replace(attr, attr + '-did'), Utils.rand(amount.split(',')[0], amount.split(',')[1]) || 4);
   });
+});
 
-  var dummyTextEls = Utils.arr(document.querySelectorAll('[data-dummy]'));
+parseDom.add('image', function (attr) {
+  if ( attr === void 0 ) attr = 'data-dummy';
+
+  document.querySelectorAll(("img[" + attr + "]")).forEach(function (el) {
+    el.src = Dummy$1.src(el.getAttribute(attr), el);
+
+    el.removeAttribute(attr);
+  });
+});
+
+parseDom.add('text', function (attr) {
+  if ( attr === void 0 ) attr = 'data-dummy';
+
+  var dummyTextEls = Utils.arr(document.querySelectorAll(("[" + attr + "]")));
 
   // prevent chromes latin translation prompt for pages with majority dummy text
   var meta = document.createElement('meta');
@@ -170,30 +204,42 @@ var updateDom = function() {
   dummyTextEls
     .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? -1 : 1; }) // needed?
     .forEach(function (el) {
-      el[el.tagName === 'INPUT' ? 'value' : 'innerHTML'] += Dummy$1.text(el.getAttribute('data-dummy'));
+      el[el.tagName === 'INPUT' ? 'value' : 'innerHTML'] += Dummy$1.text(el.getAttribute(attr));
+      el.removeAttribute(attr);
     });
+});
 
-  // some props support
-  var props = 'placeholder,title'.split(',');
-  props.forEach(function (prop) { return document.querySelectorAll(("[data-dummy\\:" + prop + "]")).forEach(function (el) {
-    el[prop] = Dummy$1.text(el.getAttribute(("data-dummy:" + prop)));
+parseDom.add('props', function (attr) {
+  if ( attr === void 0 ) attr = 'data-dummy';
+
+  // eg. data-dummy:placeholder or data-dummy:title
+  var props = (document.body.innerHTML.match(new RegExp((attr + ":([a-zA-Z]+)"), 'g'))||[]).map(function (e) { return e.replace((attr + ":"),''); });
+  props.forEach(function (prop) { return document.querySelectorAll(("[" + attr + "\\:" + prop + "]")).forEach(function (el) {
+    el[prop] = Dummy$1.text(el.getAttribute((attr + ":" + prop)));
+    el.removeAttribute((attr + ":" + prop));
   }); });
+});
+
+parseDom.add('tags', function (tag) {
+  if ( tag === void 0 ) tag = 'dummy';
 
   // tag support for text <dummy text="23"></dummy> & <dummy 23></dummy>
-  document.querySelectorAll('dummy').forEach(function (el) {
+  document.querySelectorAll(tag).forEach(function (el) {
     el.outerHTML = Dummy$1.text(el.attributes[0]
       ? el.attributes[0].value || (parseInt(el.attributes[0].name) ? el.attributes[0].name : '')
       : '');
   });
-};
+});
 
 if(document && document.addEventListener) {
   if(window.dummy_auto !== false) {
-    document.createElement('dummy');
-    document.addEventListener('DOMContentLoaded', updateDom);
+    document.createElement('dummy'); // still needed for IE support?
+    document.addEventListener('DOMContentLoaded', parseDom.all);
   }
 
-  Dummy$1.updateDom = updateDom;
+  // Expose parser and allows for selective parsing
+  // eg. Dummy.parse.text('data-dummy')
+  Dummy$1.parse = parseDom.parsers;
 }
 
 if(window && window.jQuery) {

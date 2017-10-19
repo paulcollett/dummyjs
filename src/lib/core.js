@@ -33,7 +33,7 @@ const src = (...args) => {
   const w = size[0];
   const h = size[1] || size[0];
 
-  // Getting a little messy, but idea is to test next argument to see if it isn't a color (not #..) then remove it from the arguements list and return. Otherwise fallback..
+  // Getting a little messy, but idea is to test next argument to see if it isn't a color (not #..) then remove it from the arguments list and return. Otherwise fallback..
   const text = args[0] && /^\w{2,}/.test(args[0]) ? args.splice(0, 1).pop() : ( el && el.getAttribute('data-text') || (w + '×' + h) );
   const bgColor = (el && el.getAttribute('data-color') || args[0] || '#ccc');
   const textColor = (el && el.getAttribute('data-text-color') || args[1] || '#888');
