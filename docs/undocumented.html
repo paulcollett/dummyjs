@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>DummyJs &ndash; More Documentation</title>
+<style>
+body{margin: 3%;font-family: sans-serif;font-size: 14px;line-height:1.5}
+label{ font-weight: bold }
+pre,code {background: #f5f5f5;padding: 3px}
+</style>
+</head>
+<body>
+
+<a href="/">&larr; DummyJs Home</a>
+<h2 style="margin-top: 0">Undocumented DummyJs Features</h2>
+
+<div><label>Usage with input values</label></div>
+<div class="ex-1"><input type="text" data-dummy /></div>
+<div><code data-code=".ex-1"></code></div>
+
+<hr />
+
+<div><label>Specifying a placeholder</label></div>
+<div class="ex-2"><input type="text" data-dummy:placeholder="2,5" /></div>
+<div><code data-code=".ex-2"></code></div>
+
+<hr />
+
+<div><label>Usage with psudo elements</label></div>
+<div class="ex-3">
+  <style>span:before { content: attr(my-attr); color: red; }</style>
+  <span data-dummy:my-attr="2,5">Element Text</span>
+</div>
+<div><pre data-code=".ex-3"></pre></div>
+
+<hr />
+
+<div><label>Placeholder text with "dummy" tag</label></div>
+<div class="ex-4">
+  <ul>
+    <li><dummy></dummy></li>
+    <li><dummy 5></dummy></li>
+    <li><dummy 1,5></dummy></li>
+    <li><dummy t="1,5"></dummy></li>
+    <li><dummy text="1,5"></dummy></li>
+  </ul>
+</div>
+<div><pre data-code=".ex-4"></pre></div>
+
+<hr />
+
+<div><label>Shortcut to expand some tags</label></div>
+<div class="ex-5">
+  <ul data-dummy></ul>
+  <table data-dummy></table>
+  <select data-dummy></select>
+</div>
+<div><pre data-code=".ex-5"></pre></div>
+
+<script>
+// Run before DummyJs is loaded
+(function(){
+  var els = Array.prototype.slice.call(document.querySelectorAll('[data-code]'));
+  els.forEach(function(el) {
+    var codeEl = document.querySelector(el.getAttribute('data-code'));
+    el.innerHTML = codeEl ? codeEl.innerHTML.replace(/</g,'&lt;').replace(/=""/g, '') : 'no ' + el.getAttribute('data-code');
+  });
+})();
+</script>
+
+<!--
+  Load DummyJs
+-->
+<script src="../dummy.js"></script>
+
+<!--
+  Following needs dummy JS loaded
+-->
+
+<hr />
+
+<div><label>Raw JS</label></div>
+<div><code>Dummy.text(1,3)</code></div>
+<div><script>document.write(Dummy.text(1,3));</script></div>
+
+<hr />
+
+<div><label>Raw JS</label></div>
+<div><code>Dummy.src(100) // wrapped in img tags</code></div>
+<div><script>document.write('<img src="' + Dummy.src(100) + '" />');</script></div>
+
+<hr />
+
+<div><label>Raw JS</label></div>
+<div><code>Dummy.src(300, 100) // wrapped in img tags</code></div>
+<div><script>document.write('<img src="' + Dummy.src(300, 100) + '" />');</script></div>
+
+<hr />
+
+<div><label>Raw JS</label></div>
+<div><code>Dummy.src(300, 100, 'hello') // wrapped in img tags</code></div>
+<div><script>document.write('<img src="' + Dummy.src(300, 100, 'Hello there') + '" />');</script></div>
+
+<hr />
+
+<div><label>Raw JS</label></div>
+<div><code>Dummy.src(300, 100, '#000') // wrapped in img tags</code></div>
+<div><script>document.write('<img src="' + Dummy.src(300, 100, '#000') + '" />');</script></div>
+
+<hr />
+
+<div><label>Raw JS</label></div>
+<div><code>Dummy.src(300, 100, 'Hello again', '#000', '#00f') // wrapped in img tags</code></div>
+<div><script>document.write('<img src="' + Dummy.src(300, 100, 'Hello again', '#000', '#00f') + '" />');</script></div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-1873955-6', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
