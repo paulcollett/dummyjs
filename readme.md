@@ -96,18 +96,21 @@ Duplicate elements into other areas of your webpage. Pass a CSS selector like `.
 
 ## More Docs and Examples are available at:
 
-https://dummyjs.com/
+**https://dummyjs.com/**
+
+- Bootstrap examples https://dummyjs.com/docs/bootstrap.html
+- Shh.. New features https://dummyjs.com/docs/undocumented.html
 
 ### Usage with jQuery and other Frameworks
 Vanilla Javascript:
 ```JS
-Dummy.text('30,30')
-Dummy.src('300x400')
+Dummy.text(2, 6)
+Dummy.src(300, 400)
 ```
 
 jQuery:
 ```JS
-jQuery('p').dummy('30')
+jQuery('p').dummy(30)
 ```
 
 Vue.js:
