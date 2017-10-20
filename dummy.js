@@ -131,7 +131,7 @@ parseDom.add('copy', function (attr) {
 
 parseDom.add('shorthand', function (textAttr, repeatAttr) {
   if ( textAttr === void 0 ) textAttr = 'data-dummy';
-  if ( repeatAttr === void 0 ) repeatAttr = 'repeatAttr';
+  if ( repeatAttr === void 0 ) repeatAttr = 'data-repeat';
 
   // kitchen sink
   document.querySelectorAll(("[" + textAttr + "=sink]")).forEach(function (el) {
@@ -213,9 +213,9 @@ parseDom.add('props', function (attr) {
   if ( attr === void 0 ) attr = 'data-dummy';
 
   // eg. data-dummy:placeholder or data-dummy:title
-  var props = (document.body.innerHTML.match(new RegExp((attr + ":([a-zA-Z]+)"), 'g'))||[]).map(function (e) { return e.replace((attr + ":"),''); });
+  var props = (document.body.innerHTML.match(new RegExp((attr + ":([a-zA-Z-]+)"), 'g'))||[]).map(function (e) { return e.replace((attr + ":"),''); });
   props.forEach(function (prop) { return document.querySelectorAll(("[" + attr + "\\:" + prop + "]")).forEach(function (el) {
-    el[prop] = Dummy$1.text(el.getAttribute((attr + ":" + prop)));
+    el.setAttribute(prop, Dummy$1.text(el.getAttribute((attr + ":" + prop)))); // set attribute used instead of prop to allow for data-psudo-el="sdfsdf"
     el.removeAttribute((attr + ":" + prop));
   }); });
 });

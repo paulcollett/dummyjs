@@ -32,7 +32,7 @@ parseDom.add('copy', (attr = 'data-copy') => {
   });
 });
 
-parseDom.add('shorthand', (textAttr = 'data-dummy', repeatAttr = 'repeatAttr') => {
+parseDom.add('shorthand', (textAttr = 'data-dummy', repeatAttr = 'data-repeat') => {
   // kitchen sink
   document.querySelectorAll(`[${textAttr}=sink]`).forEach(el => {
     el.removeAttribute(textAttr);
@@ -106,9 +106,9 @@ parseDom.add('text', (attr = 'data-dummy') => {
 
 parseDom.add('props', (attr = 'data-dummy') => {
   // eg. data-dummy:placeholder or data-dummy:title
-  const props = (document.body.innerHTML.match(new RegExp(`${attr}\:([a-zA-Z]+)`, 'g'))||[]).map(e => e.replace(`${attr}:`,''));
+  const props = (document.body.innerHTML.match(new RegExp(`${attr}\:([a-zA-Z\-]+)`, 'g'))||[]).map(e => e.replace(`${attr}:`,''));
   props.forEach(prop => document.querySelectorAll(`[${attr}\\:${prop}]`).forEach(el => {
-    el[prop] = Dummy.text(el.getAttribute(`${attr}:${prop}`));
+    el.setAttribute(prop, Dummy.text(el.getAttribute(`${attr}:${prop}`))); // set attribute used instead of prop to allow for data-psudo-el="sdfsdf"
     el.removeAttribute(`${attr}:${prop}`);
   }));
 });
