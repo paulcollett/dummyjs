@@ -2,7 +2,7 @@
  * can sometimes be a little on the boring side.
  *
  * To change this lets see how fun placeholder content could be
- * through crazy senarios.
+ * through crazy scenarios.
  *
  * Add your out-there idea below and we'll list it on our home page
  * at https://dummyjs.com/ along with a link to your github
