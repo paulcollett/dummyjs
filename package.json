@@ -1,6 +1,6 @@
 {
   "name": "dummyjs",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "placeholder text & images for HTML prototyping",
   "main": "dist/dummy.cjs.js",
   "module": "dist/dummy.es2015.js",
