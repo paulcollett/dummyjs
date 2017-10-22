@@ -16,7 +16,7 @@ _Latest documentation and examples can be found at:_
 Add the script tag to your HTML page:
 
 ```HTML
-<script src="https://dummyjs.com/dummy.js"></script>
+<script src="https://dummyjs.com/js"></script>
 ```
 
 or, for short:

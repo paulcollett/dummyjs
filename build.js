@@ -24,9 +24,6 @@ rollup.rollup({
   write('dist/dummy.min.js', banner + '\n' +
     uglify.minify(read('dummy.js')).code,
   bundle)
-)
-.then(bundle =>
-  write('dummy.js', read('dist/dummy.min.js'), bundle)
 );
 
 rollup.rollup({
