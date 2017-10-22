@@ -11,14 +11,12 @@
   "scripts": {
     "build": "node ./build.js",
     "dev": "npm run build && cd ./website-assets && gulp serve",
-    "version": "npm run build && git add . && git commit -m 'updated version in banner'",
+    "version": "npm run build && git add . && git commit -m 'updated banner version'",
     "prepublishOnly": "npm run build",
     "publish-package": "git push && git push --tags && npm publish --registry=https://registry.npmjs.org/"
   },
   "files": [
-    "dummy.js",
-    "dummy-module-cjs.js",
-    "dummy-module-es2015.js"
+    "dist"
   ],
   "repository": {
     "type": "git",
