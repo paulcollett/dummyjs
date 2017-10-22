@@ -2,14 +2,18 @@
   "name": "dummyjs",
   "version": "1.1.1",
   "description": "placeholder text & images for HTML prototyping",
-  "main": "dummy-module-cjs.js",
-  "module": "dummy-module-es2015.js",
-  "browser": "dummy.js",
+  "main": "dist/dummy.cjs.js",
+  "module": "dist/dummy.es2015.js",
+  "unpkg": "dist/dummy.min.js",
+  "jsdelivr": "dist/dummy.min.js",
   "author": "Paul Collett",
   "license": "MIT",
   "scripts": {
     "build": "node ./build.js",
-    "dev": "npm run build && cd ./website-assets && gulp serve"
+    "dev": "npm run build && cd ./website-assets && gulp serve",
+    "preversion": "npm run build",
+    "prepublishOnly": "npm run build",
+    "publish-package": "git push && git push --tags && npm publish --registry=https://registry.npmjs.org/"
   },
   "files": [
     "dummy.js",
@@ -26,6 +30,7 @@
   "homepage": "https://dummyjs.com/",
   "devDependencies": {
     "rollup": "^0.50.0",
-    "rollup-plugin-buble": "^0.16.0"
+    "rollup-plugin-buble": "^0.16.0",
+    "uglify-js": "^3.1.5"
   }
 }
