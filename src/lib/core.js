@@ -1,8 +1,8 @@
-import Utils from './utils.js'
+import {rand, repeat} from './utils'
 
 const text = (...args) => {
   let wordCount = args.join(',').split(','); // allow for mixed argument input ie. ('20,30') or (20, 30)
-  wordCount = Utils.rand(wordCount[0], wordCount[1]) || 10;
+  wordCount = rand(wordCount[0], wordCount[1]) || 10;
 
   let lib = 'lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel ' +
     'dolor nec viverra nullam auctor enim condimentum odio laoreet libero ' +
@@ -12,7 +12,7 @@ const text = (...args) => {
 
   const libRepeat = Math.ceil(wordCount/lib.split(' ').length);
 
-  lib = Utils.repeat(lib, libRepeat).split(' ').sort(() => 0.5 - Math.random()).slice(0, wordCount).join(' ');
+  lib = repeat(lib, libRepeat).split(' ').sort(() => 0.5 - Math.random()).slice(0, wordCount).join(' ');
 
   return lib.charAt(0).toUpperCase() + lib.slice(1);
 };
@@ -28,7 +28,7 @@ const src = (...args) => {
   }
 
   // split size to allow for random ranges
-  size = (size + '' || '404').split('x').map((a)=> Utils.rand(a.split(',')[0] || '404', a.split(',')[1]));
+  size = (size + '' || '404').split('x').map((a)=> rand(a.split(',')[0] || '404', a.split(',')[1]));
 
   const w = size[0];
   const h = size[1] || size[0];

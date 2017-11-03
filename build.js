@@ -22,7 +22,7 @@ rollup.rollup({
 )
 .then(bundle =>
   write('dist/dummy.min.js', banner + '\n' +
-    uglify.minify(read('dummy.js')).code,
+    uglify.minify(read('dist/dummy.js')).code,
   bundle)
 );
 

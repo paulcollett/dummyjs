@@ -1,5 +1,5 @@
 /*!
- * DummyJS v1.1.3
+ * DummyJS v1.1.4
  * http://dummyjs.com/
  */
 
@@ -30,14 +30,16 @@ var arr = function (nodelist) {
   return Array.from ? Array.from(nodelist) : Array.prototype.slice.call(nodelist);
 };
 
-var Utils = {rand: rand, repeat: repeat, arr: arr};
+var $$ = function (querySelector) {
+    return arr(document.querySelectorAll(querySelector))
+};
 
 var text = function () {
   var args = [], len = arguments.length;
   while ( len-- ) args[ len ] = arguments[ len ];
 
   var wordCount = args.join(',').split(','); // allow for mixed argument input ie. ('20,30') or (20, 30)
-  wordCount = Utils.rand(wordCount[0], wordCount[1]) || 10;
+  wordCount = rand(wordCount[0], wordCount[1]) || 10;
 
   var lib = 'lorem ipsum dolor sit amet consectetur adipiscing elit nunc euismod vel ' +
     'dolor nec viverra nullam auctor enim condimentum odio laoreet libero ' +
@@ -47,7 +49,7 @@ var text = function () {
 
   var libRepeat = Math.ceil(wordCount/lib.split(' ').length);
 
-  lib = Utils.repeat(lib, libRepeat).split(' ').sort(function () { return 0.5 - Math.random(); }).slice(0, wordCount).join(' ');
+  lib = repeat(lib, libRepeat).split(' ').sort(function () { return 0.5 - Math.random(); }).slice(0, wordCount).join(' ');
 
   return lib.charAt(0).toUpperCase() + lib.slice(1);
 };
@@ -66,7 +68,7 @@ var src = function () {
   }
 
   // split size to allow for random ranges
-  size = (size + '' || '404').split('x').map(function (a){ return Utils.rand(a.split(',')[0] || '404', a.split(',')[1]); });
+  size = (size + '' || '404').split('x').map(function (a){ return rand(a.split(',')[0] || '404', a.split(',')[1]); });
 
   var w = size[0];
   var h = size[1] || size[0];
@@ -115,7 +117,7 @@ var parseDom = (function () {
 parseDom.add('copy', function (attr) {
   if ( attr === void 0 ) attr = 'data-copy';
 
-  for (var i = 0; i < 3; i++) { Utils.arr(document.querySelectorAll(("[" + attr + "]")))
+  for (var i = 0; i < 3; i++) { $$(("[" + attr + "]"))
   .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? 1 : -1; }) // inner first then parents
   .forEach(function (el) {
     var selector = el.getAttribute(attr);
@@ -134,7 +136,7 @@ parseDom.add('shorthand', function (textAttr, repeatAttr) {
   if ( repeatAttr === void 0 ) repeatAttr = 'data-repeat';
 
   // kitchen sink
-  document.querySelectorAll(("[" + textAttr + "=sink]")).forEach(function (el) {
+  $$(("[" + textAttr + "=sink]")).forEach(function (el) {
     el.removeAttribute(textAttr);
 
     var tags = 'h1,h2,h3,h4,h5,ul,ol,table,blockquote'.split(',').join(',p,').split(',');
@@ -147,21 +149,21 @@ parseDom.add('shorthand', function (textAttr, repeatAttr) {
   });
 
   // list support
-  document.querySelectorAll(("ul[" + textAttr + "], ol[" + textAttr + "]")).forEach(function (el) {
+  $$(("ul[" + textAttr + "], ol[" + textAttr + "]")).forEach(function (el) {
     el.removeAttribute(textAttr);
 
-    el.innerHTML += Utils.repeat(("<li " + textAttr + "></li>"), 4);
+    el.innerHTML += repeat(("<li " + textAttr + "></li>"), 4);
   });
 
   // select support
-  document.querySelectorAll(("select[" + textAttr + "]")).forEach(function (el) {
+  $$(("select[" + textAttr + "]")).forEach(function (el) {
     el.removeAttribute(textAttr);
 
-    el.innerHTML += Utils.repeat(("<option " + textAttr + "=2,3></option>"), 4);
+    el.innerHTML += repeat(("<option " + textAttr + "=2,3></option>"), 4);
   });
 
   // table support
-  document.querySelectorAll(("table[" + textAttr + "]")).forEach(function (el) {
+  $$(("table[" + textAttr + "]")).forEach(function (el) {
     el.removeAttribute(textAttr);
 
     el.innerHTML = "<thead><tr><th " + textAttr + "=2 " + repeatAttr + "=3></th></tr></thead>\n      <tbody><tr " + repeatAttr + "=3><td " + textAttr + "=4 " + repeatAttr + "=3></td></tr></tbody>";
@@ -171,18 +173,18 @@ parseDom.add('shorthand', function (textAttr, repeatAttr) {
 parseDom.add('repeat', function (attr) {
   if ( attr === void 0 ) attr = 'data-repeat';
 
-  Utils.arr(document.querySelectorAll(("[" + attr + "]")))
+  $$(("[" + attr + "]"))
   .sort(function (a, b) { return a.compareDocumentPosition(b) & 2 ? -1 : 1; })
   .forEach(function (el) {
     var amount = el.getAttribute(attr);
-    el.outerHTML = Utils.repeat(el.outerHTML.replace(attr, attr + '-did'), Utils.rand(amount.split(',')[0], amount.split(',')[1]) || 4);
+    el.outerHTML = repeat(el.outerHTML.replace(attr, attr + '-did'), rand(amount.split(',')[0], amount.split(',')[1]) || 4);
   });
 });
 
 parseDom.add('image', function (attr) {
   if ( attr === void 0 ) attr = 'data-dummy';
 
-  document.querySelectorAll(("img[" + attr + "]")).forEach(function (el) {
+  $$(("img[" + attr + "]")).forEach(function (el) {
     el.src = Dummy$1.src(el.getAttribute(attr), el);
 
     el.removeAttribute(attr);
@@ -192,7 +194,7 @@ parseDom.add('image', function (attr) {
 parseDom.add('text', function (attr) {
   if ( attr === void 0 ) attr = 'data-dummy';
 
-  var dummyTextEls = Utils.arr(document.querySelectorAll(("[" + attr + "]")));
+  var dummyTextEls = $$(("[" + attr + "]"));
 
   // prevent chromes latin translation prompt for pages with majority dummy text
   var meta = document.createElement('meta');
@@ -214,7 +216,7 @@ parseDom.add('props', function (attr) {
 
   // eg. data-dummy:placeholder or data-dummy:title
   var props = (document.body.innerHTML.match(new RegExp((attr + ":([a-zA-Z-]+)"), 'g'))||[]).map(function (e) { return e.replace((attr + ":"),''); });
-  props.forEach(function (prop) { return document.querySelectorAll(("[" + attr + "\\:" + prop + "]")).forEach(function (el) {
+  props.forEach(function (prop) { return $$(("[" + attr + "\\:" + prop + "]")).forEach(function (el) {
     el.setAttribute(prop, Dummy$1.text(el.getAttribute((attr + ":" + prop)))); // set attribute used instead of prop to allow for data-psudo-el="sdfsdf"
     el.removeAttribute((attr + ":" + prop));
   }); });
@@ -224,7 +226,7 @@ parseDom.add('tags', function (tag) {
   if ( tag === void 0 ) tag = 'dummy';
 
   // tag support for text <dummy text="23"></dummy> & <dummy 23></dummy>
-  document.querySelectorAll(tag).forEach(function (el) {
+  $$(tag).forEach(function (el) {
     el.outerHTML = Dummy$1.text(el.attributes[0]
       ? el.attributes[0].value || (parseInt(el.attributes[0].name) ? el.attributes[0].name : '')
       : '');
