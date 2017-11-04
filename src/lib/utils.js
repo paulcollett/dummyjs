@@ -1,4 +1,4 @@
-const rand = (min, max) => {
+export const rand = (min, max) => {
   if(!min || !max) return min;
   min = Math.floor(min);
   max = Math.floor(max) + 1;
@@ -6,7 +6,7 @@ const rand = (min, max) => {
 };
 
 // repeat polyfill
-const repeat = (str, count) => {
+export const repeat = (str, count) => {
   return ''.repeat ? ('' + str).repeat(count) : ((str, count, rpt) => {
     for (let i = 0; i < count; i++) rpt += str;
 
@@ -15,8 +15,10 @@ const repeat = (str, count) => {
 };
 
 // array.from polyfill (!IE)
-const arr = nodelist => {
+export const arr = nodelist => {
   return Array.from ? Array.from(nodelist) : Array.prototype.slice.call(nodelist);
 }
 
-export default {rand, repeat, arr}
+export const $$ = querySelector => {
+    return arr(document.querySelectorAll(querySelector))
+}

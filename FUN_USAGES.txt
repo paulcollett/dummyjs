@@ -1,21 +1,21 @@
-/* To other people the reasons behind using Dummy text and images
- * can sometimes be a little on the boring side.
+/* To some people the reasons behind using Dummy text and placeholder
+ * images can sometimes be a little on the boring side ..building websites.. bla bla
  *
- * To change this lets see how fun placeholder content could be
- * through crazy senarios.
+ * So, lets have some fun and put together a list of silly, crazy, out-there ways
+ * someone could use placeholder content!
  *
- * Add your out-there idea below and we'll list it on our home page
- * at https://dummyjs.com/ along with a link to your github
+ * Add your wack idea to our list below, along with your github handle, and when we get
+ * enough we'll see if these can take a spot on the home page at https://dummyjs.com/
  *
  * Rules:
- * - A new phrase per line
- * - 3 words max (+ joining words like "in" "with" are ok)
- * - Add your GitHub username prefixed with at @symbol (optional)
- * - Add as many as you like
+ * - one usage senario per line
+ * - keep it short, aim for 3 words max
+ * - Add your GitHub username prefixed with the @ symbol (optional)
+ * - ...Add as many as you like
  *
- * [Phrase] @[GitHub Name]
+ * [fun usage] @[GitHub Name]
  *
- * Add yours by visiting:
+ * Add yours below by editing this file at:
  * https://github.com/paulcollett/dummyjs/edit/master/FUN_USAGES.txt
 */
 
@@ -26,3 +26,17 @@ Backup Playboy Centerfold @paulcollett
 Assisted Wife Conversation
 Multiplayer game menu @matheushf
 Movies Final Credits @matheushf
+Self-Published Biography
+Hip-Hop Battle Lyrics
+Alien Communication Signal
+Cult Movement Logo
+Wedding Album Placeholders
+EDM hook phrase
+Grandmas New Wallpaper
+Winning Oscars Speech @risaco
+Script For Audition @risaco
+Names of Deceased Celebrities @kkneville
+Harry Potter Characters and Spells @kkneville
+Love Letters from WWII Soldiers @kkneville
+Lyrics to Beatles Songs @kkneville
+Rickdiculous Rick-based Puns @kkneville

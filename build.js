@@ -1,6 +1,7 @@
 var fs = require('fs');
 var rollup = require('rollup');
 var buble = require('rollup-plugin-buble');
+var uglify = require('uglify-js');
 var package = require('./package.json');
 var banner =
     "/*!\n" +
@@ -17,7 +18,12 @@ rollup.rollup({
     format: 'umd',
     banner: banner,
     name: 'Dummy',
-  }).then(({code}) => write('dummy.js', code, bundle))
+  }).then(({code}) => write('dist/dummy.js', code, bundle))
+)
+.then(bundle =>
+  write('dist/dummy.min.js', banner + '\n' +
+    uglify.minify(read('dist/dummy.js')).code,
+  bundle)
 );
 
 rollup.rollup({
@@ -27,13 +33,17 @@ rollup.rollup({
 .then(bundle =>
   bundle.generate({
     format: 'es',
-  }).then(({code}) => write('dummy-module-es2015.js', code, bundle))
+  }).then(({code}) => write('dist/dummy.es2015.js', code, bundle))
 )
 .then(bundle =>
   bundle.generate({
     format: 'cjs',
-  }).then(({code}) => write('dummy-module-cjs.js', code, bundle))
+  }).then(({code}) => write('dist/dummy.cjs.js', code, bundle))
 );
+
+function read(path) {
+  return fs.readFileSync(path, 'utf8');
+}
 
 function write(dest, code, bundle) {
   return new Promise(function (resolve, reject) {
