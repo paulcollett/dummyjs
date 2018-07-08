@@ -20,7 +20,7 @@ _Latest documentation and examples can be found at:_
 
 Add the script tag to your HTML page:
 
-```HTML
+```html
 <script src="https://dummyjs.com/js"></script>
 ```
 or for JS use in React and JS apps:
@@ -28,7 +28,7 @@ or for JS use in React and JS apps:
 ```
 npm install dummyjs --save-dev
 ```
-```JS
+```js
 const Dummy = require('dummyjs'); // es5 or node
 import Dummy from 'dummyjs'; // es6
 ```
@@ -36,59 +36,59 @@ import Dummy from 'dummyjs'; // es6
 
 ## 📖 Dummy Text
 
-```HTML
+```html
 <p data-dummy></p>
 ```
-```JS
+```js
 Dummy.text()
 ```
 
 Choose the amount of words:
-```HTML
+```html
 <p data-dummy="150"></p>
 ```
-```JS
+```js
 Dummy.text(150)
 ```
 
 Choose a random amount of words between 3 and 10:
-```HTML
+```html
 <p data-dummy="3,10"></p>
 ```
-```JS
+```js
 Dummy.text(3,10)
 ```
 
 ## 🎨 Dummy Images
 DummyJs Images are rendered client side so NO one can to log your data. It's secure for your piece of mind to keep your unreleased product secret
 
-```HTML
+```html
 <img data-dummy="400x300" />
 ```
-```JS
+```js
 Dummy.img(400,300)
 ```
 
 Defaults to the size of the parent container
-```HTML
+```html
 <img data-dummy />
 ```
 
 Random size
-```HTML
+```html
 <img data-dummy="400,100x100,400" />
 ```
-```JS
+```js
 Dummy.img('400,100x100,400')
 ```
 
 Custom Text
-```HTML
+```html
 <img data-dummy="400x300" data-text="person" />
 ```
 
 Custom Colors
-```HTML
+```html
 <img data-dummy="400x300" data-color="#0000ff" data-text-color="#fff" />
 ```
 
@@ -97,38 +97,38 @@ Custom Colors
 Useful for quick Base styling or testing CMS outputted HTML. Tags like `ul`, `select`, `table`, `forms` and more are automatically outputted with suitable contents.
 
 Output a kitchen sick of headings, tables, images & form elements
-```HTML
+```html
 <div data-html></div>
 ```
-```JS
+```js
 Dummy.html() // returns a string of html elements
 ```
 
 Output a specific element:
-```HTML
+```html
 <div data-html="table"></div>
 ```
-```JS
+```js
 Dummy.html('table') // returns a string of html elements
 ```
 
 Or, multiple elements:
-```HTML
+```html
 <div data-html="h1,table,form,ul,p"></div>
 ```
-```JS
+```js
 Dummy.html('h1,table,form,ul,p') // returns a string of html elements
 ```
 
 
 ## Repeat Elements
 
-```HTML
+```html
 <div data-repeat="3">Team Member</div>
 ```
 
 Repeat a random amount of times between 3 and 10:
-```HTML
+```html
 <p data-repeat="3,10"></p>
 ```
 
@@ -136,7 +136,7 @@ Repeat a random amount of times between 3 and 10:
 
 Duplicate elements into other areas of your webpage. Pass a CSS selector like `.myelement` or `.post h3`
 
-```HTML
+```html
 <div data-copy=".pagination"></div>
 ```
 
@@ -149,7 +149,7 @@ Duplicate elements into other areas of your webpage. Pass a CSS selector like `.
 
 ### Usage with jQuery and Vue
 jQuery:
-```JS
+```js
 jQuery('p').dummy(30)
 ```
 
