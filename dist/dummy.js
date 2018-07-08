@@ -1,5 +1,5 @@
 /*!
- * DummyJS v1.1.5
+ * DummyJS v1.1.6
  * http://dummyjs.com/
  */
 
