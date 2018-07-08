@@ -46,12 +46,62 @@ const src = (...args) => {
     + '<rect x="0" y="0" width="100%" height="100%" fill="' + bgColor + '"/>'
     + '<line opacity="0.5" x1="0%" y1="0%" x2="100%" y2="100%" stroke="' + textColor + '" stroke-width="2" />'
     + '<line opacity="0.5" x1="100%" y1="0%" x2="0%" y2="100%" stroke="' + textColor + '" stroke-width="2" />'
-    + '<text stroke="' + bgColor + '" stroke-width="2em" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="'+fontSize+'">' + text + '</text>'
+    + '<text stroke="' + bgColor + '" stroke-width="2em" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="'+fontSize+'" font-family="sans-serif">' + text + '</text>'
     + '<text fill="' + textColor + '" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="'+fontSize+'" font-family="sans-serif">' + text + '</text>'
     + '</svg>');
 }
 
-export default {
-  text: text,
-  src: src
+const table = (rows = 3, rowsTo = 6, cols = 3, colsTo = 6) => {
+  cols = rand(cols, colsTo || cols);
+  rows = rand(rows, rowsTo || rows);
+  return `<table><thead><tr>`
+    + repeat(() => `<th>${text(1,3)}</th>`, cols)
+    + `</tr></thead><tbody>`
+    + repeat(`<tr>${repeat(() => `<td>${text(3,10)}</td>`, cols)}</tr>`, rows)
+    + `</tbody></table>`;
+}
+
+const html = usersTags => {
+  let tags = usersTags ? String(usersTags).split(',') : 'h1,h2,h3,h4,h5,ul,ol,table,blockquote,img,form'.split(',').join(',p,').split(',');
+  const liFn = () => repeat(() => `<li>${text(4, 10)}</li>`, rand(2, 5));
+
+  const special = {
+    a: () => `<a href="#">${text(2, 4)}</a>`,
+    ul: () => `<ul>${liFn()}</ul>`,
+    ol: ()=> `<ol>${liFn()}</ol>`,
+    table: () => table(),
+    img: () => `<img src="${src('400,1200x200,800')}" />`,
+    select: () => `<select>${repeat(() => `<option>${text(2,4)}</option>`, 4, 10)}</select>`,
+    p: () => `<p>${text(20, 50)}</p>`,
+    button: () => `<button>${text(1, 4)}</button>`,
+    input: () => `<input placeholder="${text(1,3)}" />`,
+    form: () => `<form action="#">${html('label,input,label,select,button')}</form>`
+  }
+
+  tags = tags
+    .map(tag => tag.trim().toLowerCase())
+    .map(tag => special[tag] ? special[tag]() : `<${tag}>${text(5, 15)}</${tag}>`).join('');
+
+  // few extra tags for default
+  tags += usersTags ? '' :
+    `<hr /><p>${text(1, 3)} <strong>bold text</strong>. ${text(1, 3)} <em>italic text</em>. ${text(1, 3)} <a href="#">a link</a>. ${text(150, 250)}</p>`
+    + repeat(() => `<p>${text(50, 100)}</p>`, rand(1, 3));
+
+  return tags;
+}
+
+// Undocumented but you could simply do:
+// Dummy(123) instead of Dummy.text(123)
+// or Dummy('100x100')
+// or Dummy('table')
+const expt = (...args) => {
+  const fn = String(args[0]).indexOf('x') > 0 ? src : parseInt(args[0]) > 0 ? text : html;
+
+  return fn(...args);
 };
+expt.t = expt.txt = expt.text = text;
+expt.src = expt.image = expt.img = src;
+expt.html = html;
+
+export default expt;
+

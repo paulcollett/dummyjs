@@ -32,40 +32,34 @@ parseDom.add('copy', (attr = 'data-copy') => {
   });
 });
 
-parseDom.add('shorthand', (textAttr = 'data-dummy', repeatAttr = 'data-repeat') => {
+parseDom.add('shorthand', (textAttr = 'data-dummy', repeatAttr = 'data-repeat', htmlAttr = 'data-html') => {
   // kitchen sink
-  $$(`[${textAttr}=sink]`).forEach(el => {
-    el.removeAttribute(textAttr);
+  $$(`[${htmlAttr}]`).forEach(el => {
+    const tags = el.getAttribute(htmlAttr);
+    el.removeAttribute(htmlAttr);
 
-    let tags = 'h1,h2,h3,h4,h5,ul,ol,table,blockquote'.split(',').join(',p,').split(',');
-
-    tags = tags.map(tag => `<${tag} ${textAttr}></${tag}>`).join('')
-      + `<hr /><p ${textAttr}="150">This <strong>is a longer</strong> <em>paragraph</em> <a href="#">with a link</a>. </p>`
-      + `<img ${textAttr}="800" /><p ${textAttr}="70" ${repeatAttr}=4></p>`;
-
-    el.innerHTML += tags;
+    el.innerHTML += Dummy.html(tags);
   });
 
   // list support
   $$(`ul[${textAttr}], ol[${textAttr}]`).forEach(el => {
     el.removeAttribute(textAttr);
 
-    el.innerHTML += repeat(`<li ${textAttr}></li>`, 4);
+    el.innerHTML += Dummy.html('ul').replace(/<\/?ul>/g, ''); // generate li's
   });
 
   // select support
   $$(`select[${textAttr}]`).forEach(el => {
     el.removeAttribute(textAttr);
 
-    el.innerHTML += repeat(`<option ${textAttr}=2,3></option>`, 4);
+    el.innerHTML += Dummy.html('select').replace(/<\/?select>/g, '');
   });
 
   // table support
   $$(`table[${textAttr}]`).forEach(el => {
     el.removeAttribute(textAttr);
 
-    el.innerHTML = `<thead><tr><th ${textAttr}=2 ${repeatAttr}=3></th></tr></thead>
-      <tbody><tr ${repeatAttr}=3><td ${textAttr}=4 ${repeatAttr}=3></td></tr></tbody>`;
+    el.innerHTML = Dummy.html('table').replace(/<\/?table>/g, '');
   });
 });
 

@@ -7,11 +7,11 @@ var rand = function (min, max) {
 
 // repeat polyfill
 var repeat = function (str, count) {
-  return ''.repeat ? ('' + str).repeat(count) : (function (str, count, rpt) {
-    for (var i = 0; i < count; i++) { rpt += str; }
+  return (function (str, count, rpt) {
+    for (var i = 0; i < count; i++) { rpt += (typeof str == 'function' ? str() : String(str)); }
 
     return rpt;
-  })(str + '', Math.floor(count), '');
+  })(str, Math.floor(count), '');
 };
 
 // array.from polyfill (!IE)
@@ -68,14 +68,69 @@ var src = function () {
     + '<rect x="0" y="0" width="100%" height="100%" fill="' + bgColor + '"/>'
     + '<line opacity="0.5" x1="0%" y1="0%" x2="100%" y2="100%" stroke="' + textColor + '" stroke-width="2" />'
     + '<line opacity="0.5" x1="100%" y1="0%" x2="0%" y2="100%" stroke="' + textColor + '" stroke-width="2" />'
-    + '<text stroke="' + bgColor + '" stroke-width="2em" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="'+fontSize+'">' + text + '</text>'
+    + '<text stroke="' + bgColor + '" stroke-width="2em" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="'+fontSize+'" font-family="sans-serif">' + text + '</text>'
     + '<text fill="' + textColor + '" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="'+fontSize+'" font-family="sans-serif">' + text + '</text>'
     + '</svg>');
 };
 
-var Dummy$1 = {
-  text: text,
-  src: src
+var table = function (rows, rowsTo, cols, colsTo) {
+  if ( rows === void 0 ) rows = 3;
+  if ( rowsTo === void 0 ) rowsTo = 6;
+  if ( cols === void 0 ) cols = 3;
+  if ( colsTo === void 0 ) colsTo = 6;
+
+  cols = rand(cols, colsTo || cols);
+  rows = rand(rows, rowsTo || rows);
+  return "<table><thead><tr>"
+    + repeat(function () { return ("<th>" + (text(1,3)) + "</th>"); }, cols)
+    + "</tr></thead><tbody>"
+    + repeat(("<tr>" + (repeat(function () { return ("<td>" + (text(3,10)) + "</td>"); }, cols)) + "</tr>"), rows)
+    + "</tbody></table>";
 };
 
-export default Dummy$1;
+var html = function (usersTags) {
+  var tags = usersTags ? String(usersTags).split(',') : 'h1,h2,h3,h4,h5,ul,ol,table,blockquote,img,form'.split(',').join(',p,').split(',');
+  var liFn = function () { return repeat(function () { return ("<li>" + (text(4, 10)) + "</li>"); }, rand(2, 5)); };
+
+  var special = {
+    a: function () { return ("<a href=\"#\">" + (text(2, 4)) + "</a>"); },
+    ul: function () { return ("<ul>" + (liFn()) + "</ul>"); },
+    ol: function (){ return ("<ol>" + (liFn()) + "</ol>"); },
+    table: function () { return table(); },
+    img: function () { return ("<img src=\"" + (src('400,1200x200,800')) + "\" />"); },
+    select: function () { return ("<select>" + (repeat(function () { return ("<option>" + (text(2,4)) + "</option>"); }, 4, 10)) + "</select>"); },
+    p: function () { return ("<p>" + (text(20, 50)) + "</p>"); },
+    button: function () { return ("<button>" + (text(1, 4)) + "</button>"); },
+    input: function () { return ("<input placeholder=\"" + (text(1,3)) + "\" />"); },
+    form: function () { return ("<form action=\"#\">" + (html('label,input,label,select,button')) + "</form>"); }
+  };
+
+  tags = tags
+    .map(function (tag) { return tag.trim().toLowerCase(); })
+    .map(function (tag) { return special[tag] ? special[tag]() : ("<" + tag + ">" + (text(5, 15)) + "</" + tag + ">"); }).join('');
+
+  // few extra tags for default
+  tags += usersTags ? '' :
+    "<hr /><p>" + (text(1, 3)) + " <strong>bold text</strong>. " + (text(1, 3)) + " <em>italic text</em>. " + (text(1, 3)) + " <a href=\"#\">a link</a>. " + (text(150, 250)) + "</p>"
+    + repeat(function () { return ("<p>" + (text(50, 100)) + "</p>"); }, rand(1, 3));
+
+  return tags;
+};
+
+// Undocumented but you could simply do:
+// Dummy(123) instead of Dummy.text(123)
+// or Dummy('100x100')
+// or Dummy('table')
+var expt = function () {
+  var args = [], len = arguments.length;
+  while ( len-- ) args[ len ] = arguments[ len ];
+
+  var fn = String(args[0]).indexOf('x') > 0 ? src : parseInt(args[0]) > 0 ? text : html;
+
+  return fn.apply(void 0, args);
+};
+expt.t = expt.txt = expt.text = text;
+expt.src = expt.image = expt.img = src;
+expt.html = html;
+
+export default expt;

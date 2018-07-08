@@ -10,6 +10,7 @@ if(document && document.addEventListener) {
   // Expose parser and allows for selective parsing
   // eg. Dummy.parse.text('data-dummy')
   Dummy.parse = ParseDom.parsers;
+  Dummy.parse.all = ParseDom.all;
 }
 
 if(window && window.jQuery) {

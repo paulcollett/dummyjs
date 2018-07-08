@@ -7,11 +7,11 @@ export const rand = (min, max) => {
 
 // repeat polyfill
 export const repeat = (str, count) => {
-  return ''.repeat ? ('' + str).repeat(count) : ((str, count, rpt) => {
-    for (let i = 0; i < count; i++) rpt += str;
+  return ((str, count, rpt) => {
+    for (let i = 0; i < count; i++) rpt += (typeof str == 'function' ? str() : String(str));
 
     return rpt;
-  })(str + '', Math.floor(count), '');
+  })(str, Math.floor(count), '');
 };
 
 // array.from polyfill (!IE)
