@@ -2,18 +2,20 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>DummyJs &ndash; A Dummy Text and Placeholder Images Plugin</title>
+  <meta name="viewport" content="width=device-width">
+  <title>DummyJs &ndash; Dummy Text and Placeholder Images Plugin &amp; Package</title>
   <link href="website-assets/dist/css/main.css" rel="stylesheet" />
-  <meta name="description" content="A drop-in script for dummy text generation, placeholder images and repeatable elements to help you quickly fill HTML." />
+  <meta name="description" content="Dummy text generation, placeholder images, repeatable and more tools to help you quickly battle test HTML and CSS" />
   <link rel="canonical" href="https://dummyjs.com/" />
   <link rel="icon" type="image/png" href="website-assets/favicon.png">
+  <script async src="dist/dummy.min.js"></script>
 </head>
 <body>
 
 <div class="header">
   <div class="header_title">
     <div class="logo-type logo-type--header">Dummy.js</div>
-    <div class="tagline">An aid for quicker front-end builds.</div>
+    <div class="tagline">An aid for reliable front-end builds.</div>
   </div>
   <div class="header_links">
     <a href="https://github.com/paulcollett/dummyjs" class="mast-link">GitHub</a> |
@@ -39,16 +41,26 @@
 
   <div class="contain u-mb-60">
     <div class="doc-heading u-mb-10">Start using this right now</div>
-    <div class="code-label u-mb-20 u-text-c">Place before the &lt;/body> tag (at least after all of your markup)</div>
+    <div class="code-label u-mb-20 u-text-c">Add this script to your HTML page</div>
     <div class="code-block code-block--hero u-mb-10">
-      &lt;script src="<strong>https://dummyjs.com/js</strong>"&gt;&lt;/script&gt;
+      <div class="code-block_html">&lt;script src="<strong>https://dummyjs.com/js</strong>"&gt;&lt;/script&gt;</div>
     </div>
+
     <div class="disclaimer u-text-c">
-      Hosted on GitHub Pages, SSL option is provided via <a href="https://blog.cloudflare.com/introducing-universal-ssl/" taret="_blank">CloudFlare’s free Universal SSL</a> offering
+      Hosted on GitHub Pages, SSL option is provided via <a href="https://blog.cloudflare.com/introducing-universal-ssl/" target="_blank">CloudFlare’s free Universal SSL</a> offering
     </div>
-    <div class="disclaimer u-text-c">
-      Also avaliable at <a href="https://unpkg.com/dummyjs">unpkg.com/dummyjs</a>
+    <div class="disclaimer u-text-c u-mb-20">
+      Also available at <a href="https://unpkg.com/dummyjs">unpkg.com/dummyjs</a>
     </div>
+
+    <div class="code-label u-mb-20 u-text-c">or, in React/Vue and Other JS Apps:</div>
+
+    <div class="code-block code-block--hero u-mb-10">
+      <div class="code-block_cmd">npm install dummyjs</div>
+      <div class="code-block_node">const Dummy = require('dummyjs');</div>
+      <div class="code-block_es6">import Dummy from 'dummyjs'</div>
+    </div>
+
   </div>
 
   <div class="contain u-mb-60">
@@ -60,7 +72,8 @@
       </div>
       <div class="doc-grid_item u-mb-40">
         <div class="code-block">
-          &lt;p data-dummy>&lt;/p>
+          <div class="code-block_html">&lt;p data-dummy>&lt;/p></div>
+          <div class="code-block_js">Dummy.text()</div>
         </div>
       </div>
       <div class="doc-grid_item u-mb-40">
@@ -76,7 +89,8 @@
       </div>
       <div class="doc-grid_item u-mb-40">
         <div class="code-block">
-          &lt;em data-dummy="20">&lt;/em>
+          <div class="code-block_html">&lt;em data-dummy="20">&lt;/em></div>
+          <div class="code-block_js">Dummy.text(20)</div>
         </div>
       </div>
       <div class="doc-grid_item u-mb-40">
@@ -92,7 +106,8 @@
       </div>
       <div class="doc-grid_item u-mb-40">
         <div class="code-block">
-          &lt;div data-dummy="3,6">&lt;/div>
+          <div class="code-block_html">&lt;div data-dummy="3,6">&lt;/div></div>
+          <div class="code-block_js">Dummy.text(3,6)</div>
         </div>
       </div>
       <div class="doc-grid_item u-mb-40">
@@ -101,11 +116,14 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="contain u-mb-60">
-    <div class="doc-heading u-mb-20">Dummy Images</div>
+    <div class="doc-heading">Dummy Images</div>
+    <div class="disclaimer u-text-c  u-mb-20">
+      DummyJs Images are rendered client side so NO one can to log your data<br />
+      It's secure for your piece of mind to keep your unreleased product secret
+    </div>
 
     <div class="doc-grid u-mb-40">
       <div class="doc-grid_item doc-grid_item--full u-mb-10">
@@ -115,18 +133,27 @@
 
         <div class="code-label u-mb-10 u-text-c">Autosize to parent container</div>
         <div class="code-block u-mb-20">
-          &lt;img data-dummy />
+          <div class="code-block_html">&lt;img data-dummy /></div>
+          <div class="code-block_js">Dummy.img() // Returns an image src</div>
         </div>
 
         <div class="code-label u-mb-10 u-text-c">Specific Size</div>
         <div class="code-block u-mb-5">
-          &lt;img data-dummy="400x300" />
+          <div class="code-block_html">&lt;img data-dummy="400x300" /></div>
+          <div class="code-block_js">Dummy.img(400, 300)</div>
         </div>
         <div class="u-text-c u-mb-5">or,</div>
         <div class="code-block u-mb-5">
-          &lt;img data-dummy width="400" height="300" />
+          <div class="code-block_html">&lt;img data-dummy width="400" height="300" /></div>
         </div>
-        <div class="u-text-c">or, you can also set the size with CSS</div>
+        <div class="u-text-c u-mb-20">or, you can also set the size with CSS</div>
+
+
+        <div class="code-label u-mb-10 u-text-c">Random Size</div>
+        <div class="code-block u-mb-5">
+          <div class="code-block_html">&lt;img data-dummy="400,100x100,400" /></div>
+          <div class="code-block_js">Dummy.img('400,100x100,400')</div>
+        </div>
 
       </div>
       <div class="doc-grid_item">
@@ -140,14 +167,14 @@
       <div class="doc-grid_item u-mb-40">
         <div class="code-label u-text-c u-mb-10">Custom Text</div>
         <div class="code-block u-mb-20">
-          &lt;img data-dummy data-text="User Avatar" />
+          <div class="code-block_html">&lt;img data-dummy data-text="User Avatar" /></div>
         </div>
         <img data-dummy data-text="User Avatar" />
       </div>
       <div class="doc-grid_item u-mb-40">
         <div class="code-label u-text-c u-mb-10">Custom Colors</div>
         <div class="code-block u-mb-20">
-          &lt;img data-dummy data-color="#0000ff" data-text-color="#fff" />
+          <div class="code-block_html">&lt;img data-dummy data-color="#0000ff" data-text-color="#fff" /></div>
         </div>
         <img data-dummy data-color="#0000ff" data-text-color="#fff" />
       </div>
@@ -156,17 +183,19 @@
   </div>
 
   <div class="contain u-mb-60">
-    <div class="doc-heading u-mb-20">Repeatable Elements</div>
+    <div class="doc-heading u-mb-20 u-mb-10">Repeatable Elements</div>
 
-    <div class="doc-grid">
+    <div class="doc-grid u-mb-20">
       <div class="doc-grid_item doc-grid_item--full">
-        <div class="code-label">Repeat an element `data-repeat="3"`</div>
+        <div class="code-label u-mb-10">Repeat an element `data-repeat="3"`</div>
       </div>
       <div class="doc-grid_item">
         <div class="code-block code-block--pre">
-          &lt;ul>
-            &lt;li <strong>data-repeat="3"</strong>>My list item&lt;/li>
-          &lt;/ul>
+          <div class="code-block_html">
+            &lt;ul>
+              &lt;li <strong>data-repeat="3"</strong>>My list item&lt;/li>
+            &lt;/ul>
+          </div>
         </div>
       </div>
       <div class="doc-grid_item">
@@ -178,15 +207,17 @@
       </div>
     </div>
 
-    <div class="doc-grid">
+    <div class="doc-grid u-mb-20">
       <div class="doc-grid_item doc-grid_item--full">
-        <div class="code-label">Combine with `data-dummy`</div>
+        <div class="code-label u-mb-10 ">Combine with `data-dummy`</div>
       </div>
       <div class="doc-grid_item">
         <div class="code-block code-block--pre">
+          <div class="code-block_html">
           &lt;ul>
             &lt;li <strong>data-dummy="3"</strong> <strong>data-repeat="3"</strong>>&lt;/li>
           &lt;/ul>
+          </div>
         </div>
       </div>
       <div class="doc-grid_item">
@@ -198,15 +229,17 @@
       </div>
     </div>
 
-    <div class="doc-grid">
+    <div class="doc-grid u-mb-20">
       <div class="doc-grid_item doc-grid_item--full">
-        <div class="code-label">Random Range `data-repeat="2,5"`</div>
+        <div class="code-label u-mb-10">Random Range `data-repeat="2,5"`</div>
       </div>
       <div class="doc-grid_item">
         <div class="code-block code-block--pre">
+          <div class="code-block_html">
           &lt;ul>
             &lt;li data-dummy="1,3" <strong>data-repeat="2,5"</strong>>&lt;/li>
           &lt;/ul>
+          </div>
         </div>
       </div>
       <div class="doc-grid_item">
@@ -219,13 +252,22 @@
     </div>
   </div>
 
-  <div class="bootstrap-section u-mb-40">
+  <div class="bootstrap-section">
     <div class="contain">
-      <h4 class="bootstrap-heading u-mb-10">Working with Bootstrap</h4>
+      <h4 class="bootstrap-heading u-mb-10">Working with Bootstrap?</h4>
       <p class="u-mb-10">We've put together some examples of using DummyJs with Bootstrap</p>
-      <a href="docs/bootstrap.html" class="bootstrap-button">View Here</a>
+      <a href="docs/bootstrap.html" class="bootstrap-button">View Examples</a>
     </div>
   </div>
+  <div class="bootstrap-section bootstrap-section--blue u-mb-40">
+    <div class="contain">
+      <h4 class="bootstrap-heading u-mb-10">Working with React, Vue and other JS Apps?</h4>
+      <p class="u-mb-10">Here is how to get DummyJs into your JS and framework environments</p>
+      <a href="https://www.npmjs.com/package/vue-dummy" class="bootstrap-button">Install DummyJs for Vue</a>
+      <a href="https://www.npmjs.com/package/dummyjs" class="bootstrap-button">Install DummyJs for React &amp; JS</a>
+    </div>
+  </div>
+
 
   <div class="github-btn-positioning u-mb-40">
     <em style="opacity: 0.5">Add us to your GitHub starred list &mdash;</em>&nbsp;
@@ -242,7 +284,9 @@
       </div>
       <div class="doc-grid_item u-mb-20">
         <div class="code-block">
-          &lt;div data-copy=".backstory-cite">&lt;/div>
+          <div class="code-block_html">
+            &lt;div data-copy=".backstory-cite">&lt;/div>
+          </div>
         </div>
         * Use any css like selector
       </div>
@@ -255,7 +299,8 @@
         <div class="code-label u-text-c">Useful for templating</div>
       </div>
       <div class="doc-grid_item">
-        <pre class="code-block">
+        <div class="code-block">
+          <pre class="code-block_html">
 <strong>&lt;template id="my-template"></strong>
   &lt;h4>Social Links&lt;/h4>
   &lt;ul class="example-social-links">
@@ -269,7 +314,7 @@
 &lt;hr />
 &lt;div style="border: 3px dashed green; padding: 10px">
   <strong>&lt;div data-copy="#my-template">&lt;/div></strong>
-&lt;/div></pre>
+&lt;/div></pre></div>
       </div>
       <div class="doc-grid_item">
         <div class="example-sink">
@@ -375,41 +420,47 @@
       </ul>
     </div>
     <div class="code-block u-text-c u-mb-40">
-      &lt;div data-dummy="sink">&lt;/div>
+      <div class="code-block_html">
+        &lt;div data-html>&lt;/div> <!-- Outputs a range of html elements -->
+      </div>
+      <div class="code-block_js">
+        Dummy.html() // returns HTML elements as a string
+      </div>
+      <div class="code-block_html">
+        &lt;div data-html="form">&lt;/div> <!-- Outputs a specific element -->
+      </div>
+      <div class="code-block_js">
+        Dummy.html('form') // returns as a string
+      </div>
+      <div class="code-block_html">
+        &lt;div data-html="h1,p,ul,table,select">&lt;/div> <!-- multiple elements -->
+      </div>
+      <div class="code-block_js">
+        Dummy.html('h1,p,ul,table,select') // returns as a string
+      </div>
     </div>
 
-    <div class="example-sink" data-dummy="sink"></div>
+    <div class="example-sink" data-html></div>
   </div>
 
   <div class="contain u-mb-60 u-text-c">
-    <div class="doc-heading">Use with jQuery and frameworks</div>
-
-    <div><strong>Javascript:</strong></div>
-    <div class="u-mb-30">
-      <code>Dummy.text('3,10')</code><br />
-      <code>Dummy.src('300x400')</code>
-    </div>
-
-    <div><strong>jQuery:</strong></div>
+    <div class="doc-heading">Also, target specific elements with jQuery</div>
     <div class="u-mb-30">
       <code>$('p').dummy('30')</code><br />
       <code>$('img').dummy('300,400')</code>
     </div>
-
-    <div><strong>Vue.js:</strong></div>
-    <div  class="u-mb-20">
-      <a class="link" href="https://www.npmjs.com/package/vue-dummy">https://www.npmjs.com/package/vue-dummy</a><br />
-      <code>&lt;p v-dummy="30">&lt;/p></code>
-    </div>
-
-    <div class="disclaimer u-mb-30">
-      Also, for including in modules: <a class="link" href="https://www.npmjs.com/package/dummyjs">npmjs.com/dummyjs</a>
-    </div>
   </div>
 
+  <div class="contain u-mb-60 u-text-c">
+    <div class="doc-heading u-mb-20">Not done yet...</div>
+    <div><a style="border: 1px solid currentColor;padding: 5px;border-radius: 4px"  class="link" href="docs/undocumented.html">More DummyJS Prototyping Features</a></div>
+  </div>
 
   <div class="contain u-mb-60">
     <div class="doc-heading u-mb-20">Have a go!</div>
+    <div class="u-text-c u-mb-20">
+      <a style="border: 1px solid currentColor;padding: 5px;border-radius: 4px" class="link" href="https://jsfiddle.net/mhsuLmnb" target="_blank">Test DummyJS on JSFiddle</a>
+    </div>
     <div style="padding: 1vh; border: 1px solid #ccc">
       <script async src="//jsfiddle.net/mhsuLmnb/embed/html,result/"></script>
     </div>
@@ -431,11 +482,13 @@
 
     <div class="backstory-contain u-mb-20">
 
-<p class="backstory-para u-mb-10">In a continuous effort to streamline my front-end build process, I was finding that testing images and text was a time consuming step, but also a crucial one in simulating dynamic content, testing word wrapping, repeating of elements, etc. To battle test these edge cases not only quicker, but more thoroughly, the first version of dummy.js was realised.</p>
+<p class="backstory-para u-mb-10">In a continuous effort to streamline the front-end build process, I was finding the frequent need to test images and text of various sizes. This was a time consuming manual step but also a crucial in simulating dynamic content, testing word wrapping, repeating of elements, etc. To battle test the front end for these edge cases not only quicker, but more thoroughly, the first version of DummyJs was realized to add a layer of automation to this process.</p>
 
-<p class="backstory-para u-mb-10">Packaging up DummyJs was both a step in providing quicker access to the script and opening it up for everyone to use &ndash; community &hearts;.</p>
+<p class="backstory-para u-mb-10">Packaging up DummyJs was both a step in providing quicker access to the script tag and opening it up for community use &hearts;.</p>
 
-<p class="backstory-para">Hopefully DummyJs can plug into your workflow and help crash test your next build!</p>
+<p class="backstory-para u-mb-10">From here DummyJS has extended to double as a robust tool in JS first development environments, like React and Vue and also Node JS.</p>
+
+<p class="backstory-para">Hopefully DummyJs can be the tool you need to crash test your next build!</p>
 
     </div>
 
@@ -454,8 +507,8 @@
 
   <div class="contain">
     <div class="doc-heading u-mb-20">Other Handy Prototyping Resources</div>
-    <ul class="example-ul u-mb-20">
-      <li><strong><a class="link" href="http://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a></strong> &ndash; Fake Online REST API for Testing and Prototyping</li>
+    <ul class="example-ul u-mb-20 u-text-c" style="list-style: none">
+      <li><a class="link" href="http://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder &rarr;</a><br />Fake Online REST API for Testing and Prototyping</li>
     </ul>
     <div class="u-text-c">&hellip;know of any more? <a class="link" href="https://github.com/paulcollett/dummyjs/issues">Please msg me!</a></div>
   </div>
@@ -471,12 +524,7 @@
   <div class="footer_link">
     <a class="mast-link" href="https://github.com/paulcollett/dummyjs/issues">Report Suggestions / Issues</a>
   </div>
-  <div class="footer_link">
-    <a class="mast-link" href="docs/undocumented.html">Other Features</a>
-  </div>
 </div>
-
-<script src="dist/dummy.min.js"></script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -492,10 +540,10 @@
 <script>
 (function(){
   if(!Array.from || !window.Prism) return; // !IE
-  var els = Array.from(document.querySelectorAll('.code-block'));
+  var els = Array.from(document.querySelectorAll('.code-block > *'));
   els.forEach(function(el) {
     var code = el.innerHTML.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/<\/?strong>/g,'');
-    el.innerHTML = Prism.highlight(code, Prism.languages.markup);
+    el.innerHTML = Prism.highlight(code, el.className.indexOf('_html') > 0 ? Prism.languages.markup : Prism.languages.js);
   });
 })();
 </script>

@@ -105,14 +105,36 @@ html, body
 
 .code-block
   background: #eee
-  border: 1px solid #ddd
-  padding: 10px
-  font-family: $monospace
-.code-block--pre
+  border: 1px solid #e5e5e5
+
+  > *
+    padding: 10px
+    font-family: $monospace
+    position: relative
+    &:before
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      font-size: 11px;
+      text-transform: uppercase;
+      opacity: 0.4;
+  > * + *
+    border-top: 1px solid rgba(#ccc, 0.5);
+.code-block--pre > *
   white-space: pre-line
-.code-block--hero
+.code-block--hero > *
   text-align: center
   padding: 20px 10px
+.code-block_html:before
+  content: 'html'
+.code-block_cmd:before
+  content: 'cmd'
+.code-block_node:before
+  content: 'JS (node / es5)'
+.code-block_es6:before
+  content: 'JS (es6)'
+.code-block_js:before
+  content: 'JS'
 
 .rendered-block
   background: #ddd
@@ -250,14 +272,29 @@ html, body
     font-size: 1.3em
     border-left: 5px solid #aaa
     padding-left: 1em
+  label
+    font-weight: bold;
+  form
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.3)
+  input, select
+    padding: 5px
+    width: 100%
+    margin-bottom: 10px
+  button
+    padding: 10px
+    background: #555
+    color: #fff
 
 .backstory-contain
   max-width: 700px
   margin: 0 auto
 .backstory-para
   text-align: center
-  font-size: 20px
-  font-weight: 300
+  font-size: 18px
+  font-weight: 400
+  line-height: 24px
+  color: #444
 
 
 .backstory-cite
@@ -335,6 +372,8 @@ html, body
   &:hover
     background: #fff
     color: #563d7c
+.bootstrap-section--blue
+  background: #81AADC
 
 .link
   color: #C0783D
