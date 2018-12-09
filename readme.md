@@ -1,10 +1,10 @@
 
 ### Dummy.js – Crash test your front-end builds with:
-#### Repeatable Elements, Dummy Text and Placeholder Images
+#### Dynamic, ever changing, dummy text, placeholder images and more
 
 ![dummy.js](https://user-images.githubusercontent.com/1904774/31058166-1dade7b4-a6a4-11e7-8005-7c143fd3a60e.png)
 
-Speed up and crash test your front-end builds and HTML prototypes with Dummy Text, Placeholder Images, Kitchen Sink elements and tools for easy duplicating and repeating of markup.
+Speed up and crash test your front-end builds and HTML prototypes with a range of dynamic placeholder content that helps you test for all the edge cases with image and text sizes. Throw in easy repeatable & cloning of elements and you have the perfect companion for your battle tested builds.
 
 ### 😎 Why
 
