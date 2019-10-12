@@ -18,20 +18,25 @@ _Latest documentation and examples can be found at:_
 
 ## 😄 Usage
 
-Add the script tag to your HTML page:
+Intall for use in React and JS apps:
 
-```html
-<script src="https://dummyjs.com/js"></script>
+```bash
+yarn add dummyjs --dev # for use with yarn, or:
+npm install dummyjs --save-dev # for use with npm
 ```
-or for JS use in React and JS apps:
 
-```
-npm install dummyjs --save-dev
-```
+And, import:
 ```js
 const Dummy = require('dummyjs'); // es5 or node
 import Dummy from 'dummyjs'; // es6
 ```
+
+Or simply, add the script to your html page:
+```html
+<script src="https://dummyjs.com/js"></script>
+```
+
+
 
 
 ## 📖 Dummy Text
