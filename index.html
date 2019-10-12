@@ -8,7 +8,9 @@
   <meta name="description" content="Dynamic dummy text and placeholder images to battle test your HTML and CSS builds" />
   <link rel="canonical" href="https://dummyjs.com/" />
   <link rel="icon" type="image/png" href="website-assets/favicon.png">
-  <script async src="dist/dummy.min.js"></script>
+  <script>
+  (function(a,b,c){ c=a.createElement('script'); c.src=b; a.head.appendChild(c) })(document, 'dist/dummy.min.js');
+  </script>
 </head>
 <body>
 
@@ -539,6 +541,9 @@
     <a class="mast-link" href="https://github.com/paulcollett/dummyjs/issues">Report Suggestions / Issues</a>
   </div>
 </div>
+
+<!-- Make sure script has loaded -->
+<script src="dist/dummy.min.js"></script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
