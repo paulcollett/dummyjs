@@ -8,7 +8,7 @@ Speed up and crash test your front-end builds and HTML prototypes with a range o
 
 ### 😎 Why
 
-Going through the front-end creation process requires the frequent need to test with dynamic images and text of various sizes to battle test the html + css styling. This can be a time consuming manual step, but also a crucial one to simulating user generated content, testing word wrapping, repeating of elements, etc. To battle test the front end for these edge cases not only quicker, but more thoroughly, the first version of DummyJs was realized to add a layer of automation to this process.
+Going through the front-end creation process requires the frequent need to test with dynamic images and text of various sizes to battle test the HTML + CSS styling. This can be a time consuming manual step, but also a crucial one to simulating user-generated content, testing word wrapping, repeating of elements, etc. To battle test, the front end for these edge cases not only quicker but more thoroughly, the first version of DummyJs was realized to add a layer of automation to this process.
 
 From here DummyJS has extended to double as a robust tool in JS first development environments, like React and Vue and also Node JS.
 
@@ -65,7 +65,7 @@ Dummy.text(3,10)
 ```
 
 ## 🎨 Dummy Images
-DummyJs Images are rendered client side so NO one can to log your data. It's secure for your piece of mind to keep your unreleased product secret
+DummyJs Images are rendered client side so NO one can log your data. It's secure for your peace of mind to keep your unreleased product secret
 
 ```html
 <img data-dummy="400x300" />
