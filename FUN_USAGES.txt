@@ -48,3 +48,7 @@ Graffiti Wall Artwork
 Info-Commercial Fineprint
 New Age Haiku
 Social Media Posts
+Ski Run Name
+Trail Marker Signage
+Github Commit Message
+
