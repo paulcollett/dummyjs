@@ -20,7 +20,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node ./build.js",
-    "dev": "npm run build && cd ./website-assets && gulp serve",
+    "dev": "npm run build && cd ./docs/website-assets && gulp serve",
     "version": "npm run build && git add . && git commit -m 'updated banner version'",
     "prepublishOnly": "npm run build",
     "publish-package": "git push && git push --tags && npm publish --registry=https://registry.npmjs.org/"
