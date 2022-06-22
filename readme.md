@@ -13,7 +13,7 @@ Going through the front-end creation process requires the frequent need to test 
 From here DummyJS has extended to double as a robust tool in JS first development environments, like React and Vue and also Node JS.
 
 _Latest documentation and examples can be found at:_
-### https://dummyjs.com/
+### https://dummy.paulcollett.com/
 
 
 ## 😄 Usage
@@ -33,7 +33,7 @@ import Dummy from 'dummyjs'; // es6
 
 Or simply, add the script to your html page:
 ```html
-<script src="https://dummyjs.com/js"></script>
+<script src="https://dummy.paulcollett.com/js"></script>
 ```
 
 
@@ -147,10 +147,10 @@ Duplicate elements into other areas of your webpage. Pass a CSS selector like `.
 
 ## More Docs and Examples are available at:
 
-**https://dummyjs.com/**
+**https://dummy.paulcollett.com/**
 
-- Bootstrap examples https://dummyjs.com/docs/bootstrap.html
-- Shh.. New features https://dummyjs.com/docs/undocumented.html
+- Bootstrap examples https://dummy.paulcollett.com/docs/bootstrap.html
+- Shh.. New features https://dummy.paulcollett.com/docs/undocumented.html
 
 ### Usage with jQuery and Vue
 jQuery:
